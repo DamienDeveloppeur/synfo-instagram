@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Log in!
+
+
+{% endblock %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+
+
+	<div class="testtest">
+		<div id="main_login">
+			<div id="left_login"></div>
+			<div id="right_login">
+				<div id="main_form" class="mb-3">
+					<center><img src="image/header/instagramLogin.png"></center>
+					<form method="post" class="d-flex flex-column align-items-center ">
+						{% if error %}
+							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						{% endif %}
+
+						{% if app.user %}
+							<div class="mb-3">
+								You are logged in as
+								{{ app.user.username }},
+								<a href="{{ path('app_logout') }}">Logout</a>
+							</div>
+						{% endif %}
+
+						<h1 class="h3 mb-3 font-weight-normal"></h1>
+
+						<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="input_instagram col-9 mb-2" placeholder="Nom d'utilisateur, email" required autofocus>
+						<input type="password" name="password" id="inputPassword" class="input_instagram col-9" placeholder="Mot de passe" required>
+
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+						<button class="btn button_background mt-3 col-9" type="submit">Connexion</button>
+
+					</form>
+					<div class="separateur d-flex justify-content-center align-items-center">
+
+
+						<div class="separateur_barre mr-2"></div>
+						<div>
+							OU
+						</div>
+						<div class="separateur_barre ml-2"></div>
+
+					</div>
+					<p class="blueFacebook text-center">Se connecter avec Facebook</p>
+					<p class="blueFacebook text-center">Mot de passe oublié ?</p>
+
+
+				</div>
+				<!-- Lien vers app_register -->
+				<div class="text-center" id="no_login">Vous n’avez pas de compte ?
+					<a href="{{path('app_register')}}">Inscrivez-vous
+					</a>
+
+				</div>
+
+				<div id="suggestion"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer_login" class="text-center">
+		<div id="footer_first_line">
+			À propos Blog Emplois Aide API Confidentialité Conditions Comptes
+																																																						principaux Hashtags Lieux
+		</div>
+		<div id="footer_second_line">
+			Beauté Danse et performance Fitness Nourriture et boissons Maison et
+																																																						jardin Musique Arts visuels
+		</div>
+		<div id="footer_last_line"></div>
+
+		Français © 2021 Instagram par Facebook
+	</div>
+
+
+{% endblock %}

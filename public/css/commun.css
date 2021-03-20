@@ -1,0 +1,347 @@
+:root {
+  --i1d: 38, 38, 38;
+  --edc: 199, 199, 199;
+  --f75: 38, 38, 38;
+  --fe0: 0, 55, 107;
+  --d87: 255, 255, 255;
+  --greyBackground: 250, 250, 250;
+  --bb2: 239, 239, 239;
+  --f23: 255, 255, 255;
+  --b38: 219, 219, 219;
+  --greyLight: 219, 219, 219;
+  --ca6: 219, 219, 219;
+  --cdd: 38, 38, 38;
+  --e22: 199, 199, 199;
+  --e62: 245, 251, 255;
+  --b2f: 88, 195, 34;
+  --c8c: 168, 168, 168;
+  --ce3: 239, 239, 239;
+  --jd9: 0, 0, 0;
+  --j64: 54, 54, 54;
+  --a97: 243, 243, 243;
+  --d20: 38, 38, 38;
+  --f52: 142, 142, 142;
+  --h1d: 255, 255, 255;
+  --de5: 255, 255, 255;
+  --d69: 0, 149, 246;
+  --b86: 88, 195, 34;
+  --i30: 237, 73, 86;
+  --d62: 255, 255, 255;
+  --e4f: 54, 54, 54;
+  --a72: 255, 255, 255;
+  --ie3: 142, 142, 142;
+  --c37: 237, 73, 86;
+  --f24: 0, 149, 246;
+  --jbb: 53, 121, 234;
+  --facebook: #385185;
+  --fontColorBlack: #262626;
+  --fontColorGreyLight: #8e8e8e;
+}
+
+/*
+HEADER
+*/
+@font-face {
+  font-family: "Segoe UI Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Segoe UI Regular"), url("font/Segoe UI.woff") format("woff");
+}
+@font-face {
+  font-family: "Segoe UI Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Segoe UI Italic"), url("Segoe UI Italic.woff") format("woff");
+}
+* {
+  font-family: "Segoe UI Regular", "Segoe UI Italic";
+  font-weight: 300;
+}
+a {
+  color: rgba(var(--fontColorBlack), 1);
+}
+header {
+  border-bottom: 1px solid rgba(var(--greyLight, 219, 219, 219), 1);
+  position: sticky;
+  top: 0px;
+}
+
+#navbar_top {
+  background: white;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+}
+
+#main_nav {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 975px;
+  height: 50px;
+  background-color: rgba(var(--d87, 255, 255, 255), 1);
+  padding: 0px 21px 0px 21px;
+  /* Flexbox */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#left_nav {
+  align-self: center;
+}
+
+#search_bar {
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  border: 1px solid rgba(var(--greyLight), 1);
+  /* top -- right -- bottom -- left*/
+  padding: 3px 10px 3px;
+
+  border-radius: 3px;
+  width: 214px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#search_bar #main_search {
+  padding-left: 10px;
+}
+
+#right_nav {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  vertical-align: middle;
+  justify-content: space-between;
+  width: 222px;
+  text-decoration: none;
+}
+#right_nav a {
+  text-decoration: none;
+}
+#right_nav img {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+#navbar_top #main_nav #right_nav {
+  cursor:pointer;
+}
+/* Outils */
+.button_login {
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+}
+
+.separateur {
+  margin: 10px 40px 18px;
+  color: rgba(var(--greyLight, 219, 219, 219), 1);
+}
+.separateur_barre {
+  height: 1px;
+  width: 106px;
+  border: 1px solid rgba(var(--greyLight, 219, 219, 219), 1);
+}
+
+.blueFacebook {
+  color: #385185;
+}
+
+.width350 {
+  width: 350px;
+}
+
+.pleinePage {
+  min-height: 1100px;
+}
+
+/* FORMULAIRE */
+.input_instagram {
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  background-color: rgba(var(--b3f, 250, 250, 250), 1);
+  color: #8e8e8e;
+  min-height: 35px;
+  border-radius: 5px;
+}
+
+/*
+* --------------------------------------------------------------
+Button
+* --------------------------------------------------------------
+*/
+.button_modification {
+  border: 1px solid rgba(var(--greyLight, 219, 219, 219), 1);
+  align-self: center;
+  padding: 5px;
+  border-radius: 5px;
+  width: 112px;
+  text-align: center;
+  font-size: 14px;
+}
+/*
+* --------------------------------------------------------------
+Tools
+* --------------------------------------------------------------
+*/
+.GoBlue {
+  color: rgba(var(--d69, 0, 149, 246), 1);
+  font-size: 10px;
+}
+.police1 {
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+  font-weight: 600;
+  font-size: 12px;
+}
+.police2 {
+  font-size: 11px;
+  color: rgba(var(--f52, 142, 142, 142), 1);
+}
+
+.police3 {
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+  font-size: 12px;
+}
+.rounded_photo_profil {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.pseudo_profil_home {
+  width: 184px;
+  font-size: 11px;
+}
+.padding16 {
+  padding: 0px 16px 0px 16px;
+}
+
+#footer_login {
+  height: 100px;
+  position: absolute;
+  bottom: 0%;
+  font-size: 12px;
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  text-align: center;
+  width: 100%;
+}
+
+.avatar_profil {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.width975 {
+  width: 975px;
+}
+
+.greyBackground {
+  background-color: rgba(var(--greyBackground, 255, 255, 255), 1);
+}
+.margin-auto {
+  margin: 0 auto;
+}
+
+/*
+* --------------------------------------------------------------
+Size
+* --------------------------------------------------------------
+*/
+
+.size28 {
+  font-size: 28px;
+}
+.size12 {
+  font-size: 12px;
+}
+/*
+* --------------------------------------------------------------
+Color
+* --------------------------------------------------------------
+*/
+.fontColorBlack {
+  color: var(--fontColorBlack);
+}
+.fontColorBlack {
+  color: var(--fontColorGreyLight);
+}
+
+.heavyWeight {
+  font-weight: 600;
+}
+
+/*
+* --------------------------------------------------------------
+Flexbox 
+* --------------------------------------------------------------
+*/
+
+.justify-space-evenly {
+  justify-content: space-evenly;
+}
+
+/*
+* --------------------------------------------------------------
+Upload image
+* --------------------------------------------------------------
+*/
+.input-file {
+  /* padding: 30px 0px; */
+  width: 100%;
+  /* margin: 0 auto; */
+  background: #ffffff;
+  -webkit-box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.upload-img {
+  display: inline-block;
+  width: 500px;
+  object-fit: cover;
+  object-position: 50% 50%;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+.input-file-upload {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.input-file-upload input[type='file'] {
+  opacity: 0;
+  padding: 10px 0;
+  height: 36px;
+  width: 150px;
+}
+
+.upload-label {
+  width: 150px;
+  height: 36px;
+  background: #3b70f1;
+  text-align: center;
+  color: #ffffff;
+  display: block;
+  padding: 8px 0;
+  position: absolute;
+  line-height: normal;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+}
+.input-file-upload:hover .upload-label {
+  background: #eaf5fe;
+  color: #3b70f1;
+}
+
+/*
+* --------------------------------------------------------------
+Modal
+* --------------------------------------------------------------
+*/
+

@@ -1,0 +1,22 @@
+.recapitulatif_profil {
+  width: 975px;
+  margin-bottom: 44px;
+}
+
+.profil_nav {
+  border-top: 1px solid rgba(var(--greyLight), 1);
+  height: 52px;
+}
+
+.profil_choice img {
+  width: 293px;
+  height: 293px;
+}
+.div_avatar_profil {
+  width: 292px;
+  margin: 0px 30px 0px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+

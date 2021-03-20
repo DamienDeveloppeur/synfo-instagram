@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!
+{% endblock %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
+
+	<div class="d-flex flex-column align-items-center justify-center" style="padding: 30px 20px 0;">
+		<div
+			class="width975">
+			<!-- Partie du haut -->
+			<div class="recapitulatif_profil d-flex justify-center-">
+				<div class="left div_avatar_profil">
+					<img class="avatar_profil" src="image/all/photo_profil.jpg" alt="photo_de_profil">
+				</div>
+				<div class="top">
+					<div class="d-flex mb-4">
+						<h2 class="size28 mr-3">yongo12340987</h2>
+						<span class="button_modification mr-3 font-weight-bold">Modifier profil</span>
+						<span class="align-self-center">
+							<i class="far fa-circle "></i>
+						</span>
+					</div>
+					<div class="middle d-flex mb-4">
+						<span class="mr-5">2 publications</span>
+						<span class="mr-5">30 abonnés</span>
+						<span class="mr-5">156 abonnements</span>
+					</div>
+
+					<div class="heavyWeight">
+						Yongo
+					</div>
+				</div>
+			</div>
+
+			<!-- Separateur -->
+			<div class="profil_nav ">
+
+				<div class="d-flex justify-space-evenly mb-3  mt-3 size12">
+					<a>
+						<i class="fas fa-border-all mr-1"></i>PUBLICATIONS
+					</a>
+					<a>
+						<i class="fas fa-tv mr-1"></i>IGTV
+					</a>
+					<a>
+						<i class="far fa-flag mr-1"></i>ENREGISTREMENTS
+					</a>
+					<a>
+						<i class="fas fa-portrait mr-1"></i>IDENTIFIE(E)
+					</a>
+				</div>
+			</div>
+
+			<!-- Publications -->
+			<div class="profil_choice">
+				<img class="mr-4" src="image/hiver.jpg">
+				<img class="mr-4" src="image/hiver.jpg">
+				{% for publication in allPublications %}
+				<img class="mr-4" src="publication/{{ userId }}/{{ publication.image }}" >
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div id="footer_login" class="text-center">
+		<div id="footer_first_line">
+			À propos Blog Emplois Aide API Confidentialité Conditions Comptes																																																																										principaux Hashtags Lieux
+		</div>
+		<div id="footer_second_line">
+			Beauté Danse et performance Fitness Nourriture et boissons Maison et
+																																																																																																																																																																																																																																										jardin Musique Arts visuels
+		</div>
+		<div id="footer_last_line"></div>
+
+		Français © 2021 Instagram par Facebook</div>
+
+
+
+{% endblock %}

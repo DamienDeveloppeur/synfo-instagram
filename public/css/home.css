@@ -1,0 +1,171 @@
+/*
+* --------------------------------------------------------------
+Main section
+* --------------------------------------------------------------
+*/
+
+#main {
+  display: flex;
+  justify-content: center;
+}
+#main #left_main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* SUGGEST STORIES*/
+#main #left_main #suggest_stories {
+  margin-top: 30px;
+  width: 614px;
+  height: 118px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  background-color: rgba(var(--d87, 255, 255, 255), 1);
+}
+
+/* THUMBMAIL*/
+#thumbmail {
+  width: 614px !important;
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  width: 614px;
+  display: flex;
+  flex-direction: column;
+}
+/* Rectangle du haut*/
+#main #thumbmail #top_bar_stories {
+  display: flex;
+  align-items: center;
+  background-color: rgba(var(--d87, 255, 255, 255), 1);
+  height: 60px;
+  justify-content: space-between;
+  width: 614px;
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+#main #thumbmail #top_bar_stories .img_profil {
+  display: flex;
+  align-self: center;
+  padding-left: 15px;
+}
+#main #thumbmail #top_bar_stories img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  align-self: center;
+}
+#main #thumbmail #top_bar_stories .open_modal {
+  padding-right: 15px;
+}
+#main #thumbmail #top_bar_stories .name_profil {
+  padding-left: 10px;
+}
+
+/* Image main*/
+#main_image_stories {
+  width: 614px;
+  height: 641px;
+}
+
+#main_image_stories img {
+  max-width: 614px;
+  max-height: 641px;
+  width: 614px;
+}
+
+/*
+Bottom stories
+*/
+#bottom_stories {
+  width: 614px;
+  padding: 10px 15px 0px 15px;
+  background-color: rgba(var(--d87, 255, 255, 255), 1);
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+#main #thumbmail #bottom_stories #icon_stories {
+  height: 40px;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+#main #thumbmail #bottom_stories #comment_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 200px;
+}
+#main #thumbmail #bottom_stories #add_comment_stories {
+  height: 56px;
+  border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  display: flex;
+  align-items: center;
+}
+.comment_post {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.texareaInsta {
+  padding-left: 15px;
+  height: 18px;
+  width: 80%;
+  border: none;
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+}
+.post_comment {
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+}
+/*
+* --------------------------------------------------------------
+Main profil
+* --------------------------------------------------------------
+*/
+#main_profil {
+  margin-left: 30px;
+  margin-top: 30px;
+  height: 938px;
+  width: 293px;
+}
+/* TOP */
+#main_profil #top_profil_home {
+  height: 56px;
+}
+#main_profil #top_profil_home img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+#main_profil #top_profil_home #name_profil_home {
+  align-self: center;
+  width: 179px;
+  padding-left: 15px;
+  font-weight: 600;
+}
+#main_profil #top_profil_home #basculer_profil_home {
+  font-size: 12px;
+  align-self: center;
+}
+/* Center */
+.suggestion_profil_home {
+  color: rgba(var(--f52, 142, 142, 142), 1);
+}
+.div321 {
+  width: 321px;
+}
+#main #center_profil_home .suggestion_profil_home {
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  font-size: 14px;
+}
+
+.paddingProfil {
+  align-self: center;
+  align-items: center;
+  padding: 0px 16px 0px 18px;
+  width: 321px;
+}
+
+/* BOTTOM */
+#main_profil #bottom_profil_home {
+  font-size: 10px;
+  color: grey;
+}

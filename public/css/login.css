@@ -1,0 +1,80 @@
+
+#main_login {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+.testtest {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*
+* --------------------------------------------------------------
+Left
+* --------------------------------------------------------------
+*/
+
+#main_login #left_login {
+  width: 454px;
+  height: 618px;
+  background-image: url(../image/login/43cc71bb1b43.png);
+}
+
+/*
+* --------------------------------------------------------------
+Right
+* --------------------------------------------------------------
+*/
+#right_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#main_login #right_login {
+  width: 350px;
+  height: 711px;
+
+  display: flex;
+  flex-direction: column;
+}
+#main_login #right_login #main_form {
+  height: 379px;
+  background-color: white;
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+#main_login #right_login #main_form img {
+  margin: 22px auto 12px auto;
+}
+/* Formulaire */
+#main_login #right_login #main_form form {
+  width: 100%;
+}
+#main_login #right_login #main_form input {
+  height: 36px;
+}
+
+#main_login #right_login #no_login {
+  height: 79px;
+  background-color: white;
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+#main_login #right_login #suggestion {
+  height: 101px;
+}
+
+
+
+.button_background {
+  background-color: #b2dffc;
+  border-radius: 5px;
+  color: white;
+  outline: 0;
+}
+.button_background:hover {
+  color: white;
+}

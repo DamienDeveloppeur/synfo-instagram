@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+	<link
+	rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css') }}">
+	<!-- Main section -->
+	<section>
+
+		<div id="main" class="greyBackground">
+			<div id="left_main">
+				<div id="suggest_stories"></div>
+				<!-- thumbmail of post-->
+			
+				<!-- End of  thumbmail of post-->
+			{# {% for publication in allPublications %} #}
+				
+					<div id="thumbmail">
+					<div id="top_bar_stories">
+						<div class="img_profil">
+							<img class="rounded_image" src="image/all/photo_profil.jpg" alt="photo_de_profil">
+							<div class="name_profil">
+								Yongo
+							</div>
+						</div>
+						<div class="open_modal">
+							<i class="fas fa-circle"></i>
+						</div>
+					</div>
+					<div id="main_image_stories">
+						<img src="publication/1/" alt="main_image">
+					</div>
+					<div
+						id="bottom_stories">
+						<!-- ICON STORIES-->
+						<div id="icon_stories">
+							<div class="icon_fontawesome">
+								<i class="far fa-heart"></i>
+								<i class="far fa-comment"></i>
+								<i class="far fa-envelope"></i>
+							</div>
+							<div class="share_fontawesome">
+								<i class="far fa-share-square"></i>
+							</div>
+						</div>
+						<div id="comment_section">
+							<div id="comment">
+								10 j'aime
+							</div>
+							<div id="add_comment_stories">
+								<form class="comment_post">
+									<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..."></input>
+								<span class="post_comment">Publier
+								</span>
+							</form>
+						</div>
+					</div>
+				</div>
+
+			{# {% endfor %} #}
+			</div>
+
+		</div>
+
+		<div
+			id="main_profil">
+			<!-- TOP -->
+			<div id="top_profil_home" class="d-flex justify-content-between">
+				<img class="rounded-circle" src="image/all/photo_profil.jpg" alt="photo_de_profil">
+				<div id="name_profil_home">
+					<div class="police1">
+						Yongo987162756
+					</div>
+					<div class="police2">
+						Yongo
+					</div>
+				</div>
+				<div id="basculer_profil_home" class="GoBlue">
+					basculer
+				</div>
+			</div>
+			<!-- Center -->
+			<div id="center_profil_home" class="mt-4">
+				<div class="d-flex justify-content-between pb-1 div321 padding16">
+					<div class="suggestion_profil_home">Suggestion pour vous</div>
+					<div class="police3">Voir tout</div>
+				</div>
+				<div class="d-flex justify-content-between mb-4 paddingProfil div321 padding16">
+					<div><img class="rounded_photo_profil" src="image/all/profil_autre.jpg" alt="profil">
+					</div>
+					<div class="pseudo_profil_home">
+						<div class="police1">
+							camille
+						</div>
+						<div class="police2">
+							Vous suit
+						</div>
+					</div>
+					<div class="GoBlue">S'abonner</div>
+				</div>
+			</div>
+			<!-- Bottom -->
+			<div id="bottom_profil_home">
+				<p>
+					À propos . Aide . Presse . API . Emplois . Confidentialité. Conditions . LieuxComptes . principaux . Hashtags . Langue</p>
+				<p class="copyright">© 2021 Instagram par Facebook</p>
+			</div>
+
+
+		</div>
+
+
+	</div>
+
+
+</section></div></body></html>{% endblock %}

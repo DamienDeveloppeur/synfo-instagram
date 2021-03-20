@@ -1,0 +1,17 @@
+#register {
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+
+#register form {
+  text-align: center;
+}
+
+.button_background {
+  background-color: #b2dffc;
+  border-radius: 5px;
+  color: white;
+  outline: 0;
+}
+.button_background:hover {
+  color: white;
+}

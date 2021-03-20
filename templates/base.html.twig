@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('css/commun.css') }}">
+			<link rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('font/SF-Font-Pro.dmg') }}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('font/Segoe UI.woff') }}">
+
+		</head>
+	{% endblock %}
+
+	<!-- Main navbar-->
+	<header>
+		<div id="navbar_top">
+			<div id="main_nav" class="">
+				<div id="left_nav">
+					<a href="{{path('home')}}">
+						<img src="image/header/instagram.png">
+					</a>
+				</div>
+				<div id="search_bar">
+					<i class="fas fa-search"></i>
+					<span id="main_search">Rechercher</span>
+				</div>
+				<div id="right_nav">
+					{% if app.user %}
+						<i class="far fa-plus-square" data-toggle="modal" data-target="#createPublication"></i>
+					{% endif %}
+
+					<a href="{{path('home')}}">
+						<i class="fa fa-home"></i>
+					</a>
+
+					<i class="far fa-envelope"></i>
+					<i class="far fa-compass"></i>
+					<i class="far fa-heart"></i>
+					{% if app.user %}
+						<a href="{{path('profil')}}">
+
+						{% else %}
+							<a href="{{path('app_login')}}">
+
+							{% endif %}
+							<img class="rounded_photo_profil" src="image/all/photo_profil.jpg" alt="photo_de_profil">
+						</a>
+
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<body
+			class="greyBackground fontColorGreyLight">
+			<!-- Modal Bootstrap -->
+
+			<div class="modal fade text-center" id="createPublication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Ajout d'une publication</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form method="post" enctype="multipart/form-data" action="{{ path('post_publication') }}">
+								<div class="input-file">
+									<img id="file_upload" src="http://placehold.it/70" alt="your image" class="upload-img"/>
+									<div class="input-file-upload">
+										<span class="upload-label">Selection de l'image</span>
+										<input type='file' onchange="readURL(this);" name="image"/>
+									</div>
+								</div>
+								<div class="form-group col-6 margin-auto">
+									<label for="password">Description de la publication</label>
+									<input type="text" name="describ" class="form-control"/>
+								</div>
+								<button type="submit" class="btn btn-primary">
+									Publier !
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{% block body %}{% endblock %}
+			<!-- Bottom -->
+
+		</body>
+		{% block javascripts %}
+			<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+
+			<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+			<script defer src="fontawesome/js/brands.js"></script>
+			<script defer src="fontawesome/js/solid.js"></script>
+			<script defer src="fontawesome/js/fontawesome.js"></script>
+			<script defer src="fontawesome/js/all.min.js"></script>
+			<script defer src="js/commun.js"></script>
+		{% endblock %}
+
+	</head>
+</html>
