@@ -44,6 +44,7 @@ class SecurityController extends AbstractController
             $user->setCreatedAt(new \DateTime());
             $user->setUserActif(1);
             $user->setPassword($hash);
+            $user->setAvatar("photo_profil.jpg");
 
             $manager->persist($user);
             $manager->flush();

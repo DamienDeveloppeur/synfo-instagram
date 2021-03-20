@@ -18,11 +18,11 @@ class PublicationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Publication::class);
     }
-    public function uploadImagePublication($id)
+    public function uploadImagePublication($id, $FILES)
     {
+        
         $arrayReponse = [];
-        dump($_FILES['image']);
-        if ($_FILES['image']['size'] > 4000000) {
+        if ($FILES['size'] > 4000000) {
             $arrayReponse['errors'] = "Taille d'image trop grande";
             return $arrayReponse;
         }
@@ -30,7 +30,7 @@ class PublicationRepository extends ServiceEntityRepository
         $date = date('YmdHis');
 
         // on récupére l'extension de l'image
-        $extensionImage = explode('image/', $_FILES['image']['type']);
+        $extensionImage = explode('image/', $FILES['type']);
 
         $authorized_extension = ['png', 'JPG', 'jpeg', 'JPEG'];
         // si l'extension de l'image est dans l'array des Ext authorisé, on peut upload
@@ -39,7 +39,7 @@ class PublicationRepository extends ServiceEntityRepository
         } else {
             $arrayReponse['errors'] =
                 "L'image" .
-                $_FILES['image']['name'] .
+                $FILES['name'] .
                 " n'est pas au bon format";
             return $arrayReponse;
         }
@@ -50,7 +50,6 @@ class PublicationRepository extends ServiceEntityRepository
         // création du systéme de sous dossier
 
         $path_file = 'publication/' . $id;
-        dump( $path_file);
         // Vérifier l'existance du dossier
         if (!is_dir($path_file)) {
             if (!mkdir($path_file, 0777, true)) {
@@ -68,7 +67,7 @@ class PublicationRepository extends ServiceEntityRepository
             try {
                 // lance l'exeption si on ne peut déplacer le fichier
                 if (
-                    !move_uploaded_file($_FILES['image']['tmp_name'], $location)
+                    !move_uploaded_file($FILES['tmp_name'], $location)
                 ) {
                     $arrayReponse['errors'] = 'Le fichier ne peut être uplod';
                     return $arrayReponse;

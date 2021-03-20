@@ -11,6 +11,7 @@
 			<link rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css') }}">
 			<link rel="stylesheet" type="text/css" href="{{ asset('font/SF-Font-Pro.dmg') }}">
 			<link rel="stylesheet" type="text/css" href="{{ asset('font/Segoe UI.woff') }}">
+			<link rel="stylesheet" type="text/css" href="{{ asset('css/uploadFiles.css')}}">
 
 		</head>
 	{% endblock %}
@@ -69,22 +70,52 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<form method="post" enctype="multipart/form-data" action="{{ path('post_publication') }}">
-								<div class="input-file">
-									<img id="file_upload" src="http://placehold.it/70" alt="your image" class="upload-img"/>
-									<div class="input-file-upload">
-										<span class="upload-label">Selection de l'image</span>
-										<input type='file' onchange="readURL(this);" name="image"/>
+						<!-- enctype="multipart/form-data" action="{{ path('post_publication') }}" -->
+						
+									<div id="upload_photo">
+										<label style="" >Ajoutez des photos</label>
+										<div style="display:flex; flex-wrap: wrap; justify-content: space-evenly;" >
+										{% for i in 0..2 %}
+											<div class="con-input-file" id="">
+												<span onclick="handleClickRemove(event)" class="remove-image">
+													<i class='bx bx-x'></i>
+												</span>
+												<div class="con-bg">
+													<img class="bg" id="{{ i }}" src="" alt="">
+												</div>
+												<div class="img-1">
+													<i class="fas fa-camera-retro" style="font-size:56px"></i>
+												</div>
+												<div class="img-2">
+													<div class="square-1"></div>
+												</div>
+												<div class="img-3">
+													<div class="square-2"></div>
+												</div>
+												<div class="con-text">
+													Ajoutez une photo !
+												</div>
+												<input
+													class="input"
+													onchange="processFile(event)"
+													ondrop="dropHandler(event)" 
+													ondragover="dragOverHandler(event)" 
+													ondragleave="dragLeave(event)"
+													ondragenter="dragEnter(event)"
+													ondragenter="dragEnter(event)" type="file" name="add_files_{{ i }}" id="files_{{ i }}" >
+											</div>
+										{% endfor %}
+										</div>
+										<div style="display:flex; flex-wrap: wrap; justify-content: space-evenly;"></div>
 									</div>
-								</div>
 								<div class="form-group col-6 margin-auto">
 									<label for="password">Description de la publication</label>
-									<input type="text" name="describ" class="form-control"/>
+									<input type="text" name="describ" class="form-control" id="contenue_publication"/>
 								</div>
-								<button type="submit" class="btn btn-primary">
-									Publier !
+								<button class="btn btn-primary" onclick="addPublication()"/>
+								Publier !
 								</button>
-							</form>
+							
 						</div>
 					</div>
 				</div>
@@ -107,6 +138,9 @@
 			<script defer src="fontawesome/js/fontawesome.js"></script>
 			<script defer src="fontawesome/js/all.min.js"></script>
 			<script defer src="js/commun.js"></script>
+			<script defer src="js/uploadFile.js"></script>
+			<script defer src="js/publication.js"></script>
+
 		{% endblock %}
 
 	</head>
