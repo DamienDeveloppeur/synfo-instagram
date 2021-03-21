@@ -48,7 +48,7 @@ class PublicationRepository extends ServiceEntityRepository
 
         // création du systéme de sous dossier
 
-        $path_file = 'publication/' . $id . $publicationID;
+        $path_file = 'publication/' . $id . "/". $publicationID;
         // Vérifier l'existance du dossier
         if (!is_dir($path_file)) {
             if (!mkdir($path_file, 0777, true)) {
