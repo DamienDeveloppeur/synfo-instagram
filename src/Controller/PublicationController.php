@@ -20,26 +20,20 @@ class PublicationController extends AbstractController
      */
     public function index(Request $Request,EntityManagerInterface $manager,UserRepository $repoUser, PublicationRepository $repoPubli): Response {
         $publication = new Publication();
-        $photo = new Photo();
-
-        $pseudal = $this->getuser();
-        $publication->setUser($pseudal);
-
-        $dataProfil = $repoUser->find($this->getUser()->getId());
-
+        $publication->setUser($this->getuser());
         $publication->setCreatedAt(new \DateTime());
         $publication->setContenu($_POST["contenue"]);
         $manager->persist($publication);
         $manager->flush();
-
-        foreach($_FILES as $file) {
-            $ifOk = $repoPubli->uploadImagePublication($this->getUser()->getId(), $file);
+        $publicationID = $publication->getId();
+        foreach($_FILES as $i => $file) {
+            $ifOk = $repoPubli->uploadImagePublication($this->getUser()->getId(), $file, $i, $publicationID);
             if (!empty($ifOk['success'])) {
+                $photo = new Photo();
                 $photo->setImage($ifOk['success']);
-                $publicationId = $publication->getId();
                 $photo->setPublication($publication);
                 $manager->persist($photo);
-                $manager->flush();
+                
             } else {
                 return $this->json(
                     [
@@ -49,7 +43,9 @@ class PublicationController extends AbstractController
                     200
                 );
             }
+            
         }
+        $manager->flush();
 
         return $this->json(
             [

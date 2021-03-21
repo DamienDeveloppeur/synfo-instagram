@@ -18,9 +18,8 @@ class PublicationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Publication::class);
     }
-    public function uploadImagePublication($id, $FILES)
+    public function uploadImagePublication($id, $FILES, $index, $publicationID)
     {
-        
         $arrayReponse = [];
         if ($FILES['size'] > 4000000) {
             $arrayReponse['errors'] = "Taille d'image trop grande";
@@ -45,11 +44,11 @@ class PublicationRepository extends ServiceEntityRepository
         }
 
         // on renome l'image
-        $filename = $date . '.' . $extensionImage[1];
+        $filename = $index. $date . '.' . $extensionImage[1];
 
         // création du systéme de sous dossier
 
-        $path_file = 'publication/' . $id;
+        $path_file = 'publication/' . $id . $publicationID;
         // Vérifier l'existance du dossier
         if (!is_dir($path_file)) {
             if (!mkdir($path_file, 0777, true)) {
@@ -72,6 +71,7 @@ class PublicationRepository extends ServiceEntityRepository
                     $arrayReponse['errors'] = 'Le fichier ne peut être uplod';
                     return $arrayReponse;
                 }
+                $this->setPhotoInBdd();
                 $arrayReponse['success'] = $filename;
 
                 return $arrayReponse;
@@ -81,7 +81,10 @@ class PublicationRepository extends ServiceEntityRepository
             }
         }
     }
-    
+  
+    static function setPhotoInBdd() {
+  
+    }
     // /**
     //  * @return Publication[] Returns an array of Publication objects
     //  */

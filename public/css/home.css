@@ -25,7 +25,7 @@ Main section
 }
 
 /* THUMBMAIL*/
-#thumbmail {
+.thumbmail {
   width: 614px !important;
   border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
   width: 614px;
@@ -33,7 +33,7 @@ Main section
   flex-direction: column;
 }
 /* Rectangle du haut*/
-#main #thumbmail #top_bar_stories {
+#main .thumbmail .top_bar_stories {
   display: flex;
   align-items: center;
   background-color: rgba(var(--d87, 255, 255, 255), 1);
@@ -42,31 +42,31 @@ Main section
   width: 614px;
   border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
-#main #thumbmail #top_bar_stories .img_profil {
+#main .thumbmail .top_bar_stories .img_profil {
   display: flex;
   align-self: center;
   padding-left: 15px;
 }
-#main #thumbmail #top_bar_stories img {
+#main .thumbmail .top_bar_stories img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   align-self: center;
 }
-#main #thumbmail #top_bar_stories .open_modal {
+#main .thumbmail .top_bar_stories .open_modal {
   padding-right: 15px;
 }
-#main #thumbmail #top_bar_stories .name_profil {
+#main .thumbmail .top_bar_stories .name_profil {
   padding-left: 10px;
 }
 
 /* Image main*/
-#main_image_stories {
+.main_image_stories {
   width: 614px;
   height: 641px;
 }
 
-#main_image_stories img {
+.main_image_stories img {
   max-width: 614px;
   max-height: 641px;
   width: 614px;
@@ -81,20 +81,20 @@ Bottom stories
   background-color: rgba(var(--d87, 255, 255, 255), 1);
   border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
 }
-#main #thumbmail #bottom_stories #icon_stories {
+#main .thumbmail .bottom_stories .icon_stories {
   height: 40px;
   font-size: 24px;
   display: flex;
   justify-content: space-between;
 }
-#main #thumbmail #bottom_stories #comment_section {
+#main .thumbmail .bottom_stories .comment_section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   height: 200px;
 }
-#main #thumbmail #bottom_stories #add_comment_stories {
+#main .thumbmail .bottom_stories .add_comment_stories {
   height: 56px;
   border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
   display: flex;
@@ -105,13 +105,7 @@ Bottom stories
   display: flex;
   align-items: center;
 }
-.texareaInsta {
-  padding-left: 15px;
-  height: 18px;
-  width: 80%;
-  border: none;
-  color: rgba(var(--i1d, 38, 38, 38), 1);
-}
+
 .post_comment {
   color: rgba(var(--i1d, 38, 38, 38), 1);
 }
