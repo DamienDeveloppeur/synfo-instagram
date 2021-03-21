@@ -3,7 +3,6 @@
 {% block title %}Hello HomeController!
 {% endblock %}
 
-
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 	<link
@@ -17,35 +16,35 @@
 				<!-- thumbmail of post-->
 
 				<!-- End of  thumbmail of post-->
-				{# {% for publication in allPublications %} #}
-
-					<div class="thumbmail" class="mb-3"> <div class="top_bar_stories">
-						<div class="img_profil">
-							<img class="rounded_image" src="image/all/photo_profil.jpg" alt="photo_de_profil">
-							<div class="name_profil">
-								Yongo
+				{% for publication in allPublications %}
+					<div class="thumbmail">
+						<div class="top_bar_stories">
+							<div class="img_profil">
+								<img class="rounded_image" src="image/all/photo_profil.jpg" alt="photo_de_profil">
+								<div class="name_profil">
+									Yongo
+								</div>
+							</div>
+							<div class="open_modal">
+								<i class="fas fa-circle"></i>
 							</div>
 						</div>
-						<div class="open_modal">
-							<i class="fas fa-circle"></i>
+						<div class="main_image_stories">
+							<img src="publication/{{ publication.user_id}}/{{ publication.id }}/{{ publication.image}}" alt="main_image">
 						</div>
-					</div>
-					<div class="main_image_stories">
-						<img src="image/home/storm.png" alt="main_image">
-					</div>
-					<div
-						class="bottom_stories">
-						<!-- ICON STORIES-->
-						<div class="icon_stories">
-							<div class="icon_fontawesome">
-								<i class="far fa-heart"></i>
-								<i class="far fa-comment"></i>
-								<i class="far fa-envelope"></i>
+						<div
+							class="bottom_stories">
+							<!-- ICON STORIES-->
+							<div class="icon_stories">
+								<div class="icon_fontawesome">
+									<i class="far fa-heart"></i>
+									<i class="far fa-comment"></i>
+									<i class="far fa-envelope"></i>
+								</div>
+								<div class="share_fontawesome">
+									<i class="far fa-share-square"></i>
+								</div>
 							</div>
-							<div class="share_fontawesome">
-								<i class="far fa-share-square"></i>
-							</div>
-							{# </div> #}
 							<div class="comment_section">
 								<div class="comment">
 									10 j'aime
@@ -60,8 +59,9 @@
 						</div>
 					</div>
 
-					{# {% endfor %} #}
+				{% endfor %}
 			</div>
+
 		</div>
 
 		<div
@@ -108,11 +108,8 @@
 				<p class="copyright">© 2021 Instagram par Facebook</p>
 			</div>
 
-
 		</div>
 
-
 	</div>
-
 
 </section></div></body></html>{% endblock %}

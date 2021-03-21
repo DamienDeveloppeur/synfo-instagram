@@ -101,8 +101,7 @@ class PublicationRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    /*
+/*
     public function findOneBySomeField($value): ?Publication
     {
         return $this->createQueryBuilder('p')
@@ -112,5 +111,22 @@ class PublicationRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+*/
+
+    public function getAllPublication(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT * 
+            FROM publication pb
+            JOIN photo ph on pb.id = ph.publication_id
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAllAssociative();
+    }
+
 }

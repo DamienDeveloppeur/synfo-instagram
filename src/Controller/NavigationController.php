@@ -25,8 +25,9 @@ class NavigationController extends AbstractController
     public function home(PublicationRepository $PublicationRepo){
 
         $publication = new Publication();
-        $allPublications = $PublicationRepo->findAll();
+        $allPublications = $PublicationRepo->getAllPublication();
 
+        dump($allPublications);
         return $this->render('home/index.html.twig', [
             'allPublications' => $allPublications,
         ]);
