@@ -245,7 +245,9 @@ Tools
 .margin-auto {
   margin: 0 auto;
 }
-
+.bold {
+  font-weight:bold;
+}
 /*
 * --------------------------------------------------------------
 Size
@@ -266,7 +268,7 @@ Color
 .fontColorBlack {
   color: var(--fontColorBlack);
 }
-.fontColorBlack {
+.fontColorGreyLight {
   color: var(--fontColorGreyLight);
 }
 
@@ -356,4 +358,14 @@ Input
   border: none;
   color: rgba(var(--i1d, 38, 38, 38), 1);
   background : none;
+}
+
+/*
+* --------------------------------------------------------------
+Cursor
+* --------------------------------------------------------------
+*/
+
+.pointer {
+  cursor:pointer;
 }

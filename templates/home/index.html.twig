@@ -17,12 +17,16 @@
 
 				<!-- End of  thumbmail of post-->
 				{% for publication in allPublications %}
-					<div class="thumbmail">
+					<div class="thumbmail mb-5">
 						<div class="top_bar_stories">
 							<div class="img_profil">
-								<img class="rounded_image" src="image/all/photo_profil.jpg" alt="photo_de_profil">
+							{% if publication.avatar == default_avatar %}
+								<img class="rounded_image" src="{{path_default_avatar}}/{{ default_avatar}} " alt="photo_de_profil">
+							{% else %}	
+								<img class="rounded_image" src="avatar/{{ publication.user_id }}/{{ publication.avatar}}" alt="photo_de_profil">
+							{% endif %}
 								<div class="name_profil">
-									Yongo
+									{{ publication.pseudo }}
 								</div>
 							</div>
 							<div class="open_modal">
@@ -47,22 +51,24 @@
 							</div>
 							<div class="comment_section">
 								<div class="comment">
-									10 j'aime
+									{{ publication.nbr_like }} j'aime
 								</div>
+								 <div> <span class="bold">{{ publication.pseudo}} </span>{{ publication.contenu}} </div>
+								<span class="fontColorGreyLight pointer" onclick="getComment({{publication.id}})"> Voir les {{ publication.NbrComment }} commentaires </span>
 								<div class="add_comment_stories">
+					
 									<form class="comment_post">
-										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..."></input>
-									<span class="post_comment">Publier
-									</span>
-								</form>
+										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." id="commentPublication"></input>
+										<span class="post_comment" onclick="postComment({{ publication.id }})">Publier</span>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
-
 				{% endfor %}
 			</div>
 
-		</div>
+		
 
 		<div
 			id="main_profil">
@@ -109,7 +115,7 @@
 			</div>
 
 		</div>
-
+</div>
 	</div>
 
 </section></div></body></html>{% endblock %}

@@ -47,4 +47,26 @@ class CommentaireRepository extends ServiceEntityRepository
         ;
     }
     */
+
+       /**
+     * @return array
+     */
+    public function getCommentByPublication($idPubli): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+        SELECT c.contenue,
+               u.pseudo,
+               c.created_at
+        FROM commentaire c
+        JOIN user u on u.id = c.user_id
+        WHERE publication_id = :idPubli
+         ';
+        $stmt = $conn->prepare($sql);
+        
+        $stmt->execute(['idPubli' => $idPubli]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAllAssociative();
+    }
 }

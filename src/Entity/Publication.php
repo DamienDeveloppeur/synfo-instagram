@@ -40,14 +40,16 @@ class Publication
     private $photos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="publication")
+     * @ORM\OneToMany(targetEntity=LikePublication::class, mappedBy="publication")
      */
-    private $commentaires;
+    private $likePublications;
+
 
     public function __construct()
     {
         $this->photos = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
+        $this->likePublications = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -122,29 +124,29 @@ class Publication
     }
 
     /**
-     * @return Collection|Commentaire[]
+     * @return Collection|LikePublication[]
      */
-    public function getCommentaires(): Collection
+    public function getLikePublications(): Collection
     {
-        return $this->commentaires;
+        return $this->likePublications;
     }
 
-    public function addCommentaire(Commentaire $commentaire): self
+    public function addLikePublication(LikePublication $likePublication): self
     {
-        if (!$this->commentaires->contains($commentaire)) {
-            $this->commentaires[] = $commentaire;
-            $commentaire->setPublication($this);
+        if (!$this->likePublications->contains($likePublication)) {
+            $this->likePublications[] = $likePublication;
+            $likePublication->setPublication($this);
         }
 
         return $this;
     }
 
-    public function removeCommentaire(Commentaire $commentaire): self
+    public function removeLikePublication(LikePublication $likePublication): self
     {
-        if ($this->commentaires->removeElement($commentaire)) {
+        if ($this->likePublications->removeElement($likePublication)) {
             // set the owning side to null (unless already changed)
-            if ($commentaire->getPublication() === $this) {
-                $commentaire->setPublication(null);
+            if ($likePublication->getPublication() === $this) {
+                $likePublication->setPublication(null);
             }
         }
 

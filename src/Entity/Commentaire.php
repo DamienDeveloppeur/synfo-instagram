@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CommentaireRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,28 +25,19 @@ class Commentaire
     /**
      * @ORM\Column(type="datetime")
      */
-    private $createdAt;
+    private $CreatedAt;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $actif;
-
-    /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="commentaire")
-     */
-    private $user;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=publication::class, inversedBy="commentaires")
+     * @ORM\ManyToOne(targetEntity=publication::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $publication;
 
-    public function __construct()
-    {
-        $this->user = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="commentaires")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -69,54 +58,12 @@ class Commentaire
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->createdAt;
+        return $this->CreatedAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getActif(): ?bool
-    {
-        return $this->actif;
-    }
-
-    public function setActif(bool $actif): self
-    {
-        $this->actif = $actif;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|user[]
-     */
-    public function getUser(): Collection
-    {
-        return $this->user;
-    }
-
-    public function addUser(user $user): self
-    {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setCommentaire($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(user $user): self
-    {
-        if ($this->user->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getCommentaire() === $this) {
-                $user->setCommentaire(null);
-            }
-        }
+        $this->CreatedAt = $CreatedAt;
 
         return $this;
     }
@@ -129,6 +76,18 @@ class Commentaire
     public function setPublication(?publication $publication): self
     {
         $this->publication = $publication;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

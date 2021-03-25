@@ -68,13 +68,26 @@ class User implements UserInterface
     private $avatar;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Commentaire::class, inversedBy="user")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="user", orphanRemoval=true)
      */
-    private $commentaire;
+    private $commentaires;
+
+    /**
+     * @ORM\OneToMany(targetEntity=LikePublication::class, mappedBy="user")
+     */
+    private $likePublications;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Abonnement::class, mappedBy="user_receiver")
+     */
+    private $abonnements;
 
     public function __construct()
     {
         $this->publications = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
+        $this->likePublications = new ArrayCollection();
+        $this->abonnements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -233,14 +246,92 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCommentaire(): ?Commentaire
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
     {
-        return $this->commentaire;
+        return $this->commentaires;
     }
 
-    public function setCommentaire(?Commentaire $commentaire): self
+    public function addCommentaire(Commentaire $commentaire): self
     {
-        $this->commentaire = $commentaire;
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getUser() === $this) {
+                $commentaire->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|LikePublication[]
+     */
+    public function getLikePublications(): Collection
+    {
+        return $this->likePublications;
+    }
+
+    public function addLikePublication(LikePublication $likePublication): self
+    {
+        if (!$this->likePublications->contains($likePublication)) {
+            $this->likePublications[] = $likePublication;
+            $likePublication->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikePublication(LikePublication $likePublication): self
+    {
+        if ($this->likePublications->removeElement($likePublication)) {
+            // set the owning side to null (unless already changed)
+            if ($likePublication->getUser() === $this) {
+                $likePublication->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Abonnement[]
+     */
+    public function getAbonnements(): Collection
+    {
+        return $this->abonnements;
+    }
+
+    public function addAbonnement(Abonnement $abonnement): self
+    {
+        if (!$this->abonnements->contains($abonnement)) {
+            $this->abonnements[] = $abonnement;
+            $abonnement->setUserReceiver($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbonnement(Abonnement $abonnement): self
+    {
+        if ($this->abonnements->removeElement($abonnement)) {
+            // set the owning side to null (unless already changed)
+            if ($abonnement->getUserReceiver() === $this) {
+                $abonnement->setUserReceiver(null);
+            }
+        }
 
         return $this;
     }

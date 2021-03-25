@@ -71,7 +71,7 @@ class PublicationRepository extends ServiceEntityRepository
                     $arrayReponse['errors'] = 'Le fichier ne peut être uplod';
                     return $arrayReponse;
                 }
-                $this->setPhotoInBdd();
+
                 $arrayReponse['success'] = $filename;
 
                 return $arrayReponse;
@@ -82,9 +82,41 @@ class PublicationRepository extends ServiceEntityRepository
         }
     }
   
-    static function setPhotoInBdd() {
-  
+    /**
+     * @return array
+     */
+    public function getAllPublication(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT  ph.image,
+                    pb.contenu,
+                    pb.id,
+                    u.id as user_id,
+                    pb.created_at,
+                    u.avatar,
+                    u.pseudo,
+                    COUNT(lp.id) as nbr_like,
+                    lp2.user_id as LP2ID,
+                    COUNT(c.contenue) as NbrComment
+            FROM publication pb
+            JOIN photo ph on pb.id = ph.publication_id
+            JOIN user u on u.id = pb.user_id
+            LEFT JOIN commentaire c on pb.id = c.publication_id
+            LEFT JOIN like_publication lp on lp.publication_id = pb.id
+            LEFT OUTER JOIN like_publication lp2 ON lp2.user_id = lp.user_id
+            GROUP BY pb.id
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAllAssociative();
     }
+
+}
+
     // /**
     //  * @return Publication[] Returns an array of Publication objects
     //  */
@@ -112,21 +144,3 @@ class PublicationRepository extends ServiceEntityRepository
         ;
     }
 */
-
-    public function getAllPublication(): array
-    {
-        $conn = $this->getEntityManager()->getConnection();
-
-        $sql = '
-            SELECT * 
-            FROM publication pb
-            JOIN photo ph on pb.id = ph.publication_id
-            ';
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-
-        // returns an array of arrays (i.e. a raw data set)
-        return $stmt->fetchAllAssociative();
-    }
-
-}
