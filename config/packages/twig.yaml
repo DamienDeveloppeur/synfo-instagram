@@ -7,3 +7,4 @@ twig:
         path_image : "image/test"
         default_avatar : "photo_profil.jpg"
         path_default_avatar : "image/all"
+        path_publication : "publication"

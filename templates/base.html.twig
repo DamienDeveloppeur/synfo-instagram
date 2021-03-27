@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}
+				{{title}}
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
@@ -15,7 +16,7 @@
 
 		</head>
 	{% endblock %}
-
+{% if app.user %}
 	<!-- Main navbar-->
 	<header>
 		<div id="navbar_top">
@@ -30,118 +31,105 @@
 					<span id="main_search">Rechercher</span>
 				</div>
 				<div id="right_nav">
-					{% if app.user %}
-						<i class="far fa-plus-square" data-toggle="modal" data-target="#createPublication"></i>
-					{% endif %}
-
+					<i class="far fa-plus-square" data-toggle="modal" data-target="#createPublication"></i>
 					<a href="{{path('home')}}">
 						<i class="fa fa-home"></i>
 					</a>
-
 					<i class="far fa-envelope"></i>
 					<i class="far fa-compass"></i>
 					<i class="far fa-heart"></i>
-					{% if app.user %}
-						<a href="{{path('profil')}}">
-
-						{% else %}
-							<a href="{{path('app_login')}}">
-
-							{% endif %}
-							<img class="rounded_photo_profil" src="image/all/photo_profil.jpg" alt="photo_de_profil">
-						</a>
-
-					</div>
+					<img class="rounded_photo_profil" onclick="openMenu('popup_profil')" src="image/all/photo_profil.jpg" alt="photo_de_profil">
+				</div>
+				<!-- Menu barre header -->
+				<div id="popup_profil" class="d-none">
+					<a href="{{path('profil')}}">
+						<i class="far fa-user-circle"></i>Profil</a>
+					<a href="">
+						<i class="far fa-bookmark"></i>Enregistré</a>
+					<a href="">
+						<i class="fas fa-circle-notch"></i>Paramètres</a>
+					<a href="">
+						<i class="fas fa-sync-alt"></i>Changer de compte</a>
+					<div class="separateur_menu"></div>
+					<a href="{{path('app_logout')}}">Déconnexion</a>
 				</div>
 			</div>
-		</header>
-
-		<body
-			class="greyBackground fontColorBlack">
-			<!-- Modal Bootstrap -->
-
-			<div class="modal fade text-center" id="createPublication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Ajout d'une publication</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
+		</div>
+	</header>
+{% endif %}
+	<body
+		class="fontColorBlack">
+		<!-- Modal Bootstrap -->
+		<div class="modal fade text-center" id="createPublication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ajout d'une publication</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div
+						class="modal-body">
 						<!-- enctype="multipart/form-data" action="{{ path('post_publication') }}" -->
-						
-									<div id="upload_photo">
-										<label style="" >Ajoutez des photos</label>
-										<div style="display:flex; flex-wrap: wrap; justify-content: space-evenly;" >
-										{% for i in 0..2 %}
-											<div class="con-input-file" id="">
-												<span onclick="handleClickRemove(event)" class="remove-image">
-													<i class='bx bx-x'></i>
-												</span>
-												<div class="con-bg">
-													<img class="bg" id="{{ i }}" src="" alt="">
-												</div>
-												<div class="img-1">
-													<i class="fas fa-camera-retro" style="font-size:56px"></i>
-												</div>
-												<div class="img-2">
-													<div class="square-1"></div>
-												</div>
-												<div class="img-3">
-													<div class="square-2"></div>
-												</div>
-												<div class="con-text">
-													Ajoutez une photo !
-												</div>
-												<input
-													class="input"
-													onchange="processFile(event)"
-													ondrop="dropHandler(event)" 
-													ondragover="dragOverHandler(event)" 
-													ondragleave="dragLeave(event)"
-													ondragenter="dragEnter(event)"
-													ondragenter="dragEnter(event)" type="file" name="add_files_{{ i }}" id="files_{{ i }}" >
-											</div>
-										{% endfor %}
+
+						<div id="upload_photo">
+							<label style="">Ajoutez des photos</label>
+							<div style="display:flex; flex-wrap: wrap; justify-content: space-evenly;">
+								{% for i in 0..2 %}
+									<div class="con-input-file" id="">
+										<span onclick="handleClickRemove(event)" class="remove-image">
+											<i class='bx bx-x'></i>
+										</span>
+										<div class="con-bg">
+											<img class="bg" id="{{ i }}" src="" alt="">
 										</div>
-										<div style="display:flex; flex-wrap: wrap; justify-content: space-evenly;"></div>
+										<div class="img-1">
+											<i class="fas fa-camera-retro" style="font-size:56px"></i>
+										</div>
+										<div class="img-2">
+											<div class="square-1"></div>
+										</div>
+										<div class="img-3">
+											<div class="square-2"></div>
+										</div>
+										<div class="con-text">
+											Ajoutez une photo !
+										</div>
+										<input class="input" onchange="processFile(event)" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" ondragleave="dragLeave(event)" ondragenter="dragEnter(event)" ondragenter="dragEnter(event)" type="file" name="add_files_{{ i }}" id="files_{{ i }}">
 									</div>
-								<div class="form-group col-6 margin-auto">
-									<label for="password">Description de la publication</label>
-									<input type="text" name="describ" class="form-control" id="contenue_publication"/>
-								</div>
-								<button class="btn btn-primary" onclick="addPublication()"/>
-								Publier !
-								</button>
-							
+								{% endfor %}
+							</div>
+							<div style="display:flex; flex-wrap: wrap; justify-content: space-evenly;"></div>
 						</div>
-					</div>
+						<div class="form-group col-6 margin-auto">
+							<label for="password">Description de la publication</label>
+							<input type="text" name="describ" class="form-control" id="contenue_publication"/>
+						</div>
+						<button class="btn btn-primary" onclick="addPublication()"/>
+						Publier !
+					</button>
+
 				</div>
 			</div>
+		</div>
+	</body>
 
-			{% block body %}{% endblock %}
-			<!-- Bottom -->
-
-		</body>
-		{% block javascripts %}
-			<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-			<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-
-			<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-			<script defer src="fontawesome/js/brands.js"></script>
-			<script defer src="fontawesome/js/solid.js"></script>
-			<script defer src="fontawesome/js/fontawesome.js"></script>
-			<script defer src="fontawesome/js/all.min.js"></script>
-			<script defer src="js/commun.js"></script>
-			<script defer src="js/uploadFile.js"></script>
-			<script defer src="js/home.js"></script>
-
-		{% endblock %}
-
-	</head>
+</div>
+{% block body %}{% endblock %}
+</body>
+<!-- Bottom -->
+{% block javascripts %}
+	{# <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> #}
+	<script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script defer src="fontawesome/js/brands.js"></script>
+	<script defer src="fontawesome/js/solid.js"></script>
+	<script defer src="fontawesome/js/fontawesome.js"></script>
+	<script defer src="fontawesome/js/all.min.js"></script>
+	<script defer src="js/commun.js"></script>
+	<script defer src="js/uploadFile.js"></script>
+	<script defer src="js/home.js"></script>
+{% endblock %}
 </html>

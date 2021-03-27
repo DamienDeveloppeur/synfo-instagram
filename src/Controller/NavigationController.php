@@ -11,15 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class NavigationController extends AbstractController
 {
     /**
-     * @Route("/navigation", name="navigation")
-     */
-    public function index(): Response
-    {
-        return $this->render('navigation/index.html.twig', [
-            'controller_name' => 'NavigationController',
-        ]);
-    }
-    /**
      * @Route("/", name="home")
      */
     public function home(PublicationRepository $PublicationRepo){
@@ -27,9 +18,10 @@ class NavigationController extends AbstractController
         $publication = new Publication();
         $allPublications = $PublicationRepo->getAllPublication();
 
-        dump($allPublications);
+        // dump($allPublications);
         return $this->render('home/index.html.twig', [
             'allPublications' => $allPublications,
+            'title' => "accueil",
         ]);
     }
 }

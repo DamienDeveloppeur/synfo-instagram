@@ -82,6 +82,11 @@ class User implements UserInterface
      */
     private $abonnements;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $meta_name;
+
     public function __construct()
     {
         $this->publications = new ArrayCollection();
@@ -332,6 +337,18 @@ class User implements UserInterface
                 $abonnement->setUserReceiver(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMetaName(): ?string
+    {
+        return $this->meta_name;
+    }
+
+    public function setMetaName(string $meta_name): self
+    {
+        $this->meta_name = $meta_name;
 
         return $this;
     }

@@ -114,6 +114,59 @@ class PublicationRepository extends ServiceEntityRepository
         // returns an array of arrays (i.e. a raw data set)
         return $stmt->fetchAllAssociative();
     }
+    /**
+     * @return array
+     */
+    public function getAllPublicationByKey($key, $value): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT  ph.image,
+                    pb.contenu,
+                    pb.id,
+                    u.id as user_id,
+                    u.avatar,
+                    u.pseudo,
+                    COUNT(lp.id) as nbr_like,
+                    COUNT(c.contenue) as NbrComment
+            FROM publication pb
+            JOIN photo ph on pb.id = ph.publication_id
+            JOIN user u on u.id = pb.user_id
+            LEFT JOIN commentaire c on pb.id = c.publication_id
+            LEFT JOIN like_publication lp on lp.publication_id = pb.id
+            WHERE '.$key.' = '.$value.'
+            GROUP BY pb.id
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAllAssociative();
+    }
+
+    /**
+     * @return array
+     * @param String $entity nom de la table
+     * @param String $key nom de la colonne
+     * @param mixed $value valeur de la colonne 
+     */
+    public function getNbrEntity(string $entity, string $key, mixed $value): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT 
+                    COUNT(id) as nbrElement
+            FROM '.$entity.'
+            WHERE '.$key.' = '.$value.'
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
 
 }
 

@@ -11,8 +11,6 @@ function readURL(input) {
 }
 
 function addPublication() {
-
-
     var formData = new FormData();
     formData.append('contenue', $("#contenue_publication").val());
     $('.con-input-file input[type="file"]').each(function(i, elt) { 
@@ -26,17 +24,27 @@ function addPublication() {
         // }
     });
     
-        $.ajax({
-            type: "POST",
-            url: 'publication',
-            async: true,
-            data:formData,
-            processData: false,  // tell jQuery not to process the data
-            contentType: false,
-            dataType: "json",
-            cache: false
-            }).done(function (result) {
-                    console.log(result)
-            })
+    $.ajax({
+        type: "POST",
+        url: 'publication',
+        async: true,
+        data:formData,
+        processData: false,  // tell jQuery not to process the data
+        contentType: false,
+        dataType: "json",
+        cache: false
+        })
+        .done(function (result) {
+                console.log(result)
+                $('#createPublication').modal('toggle');
+        })
     
+}
+
+function openMenu(idDiv) {
+    if($("#"+idDiv+"").hasClass("d-none")){
+        $("#"+idDiv+"").removeClass("d-none")
+    } else {
+        $("#"+idDiv+"").addClass("d-none")
     }
+}

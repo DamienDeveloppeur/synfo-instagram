@@ -1,30 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
-{% endblock %}
-
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 	<link
 	rel="stylesheet" href="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css') }}">
 	<!-- Main section -->
-	<section>
+	<section class="mainGrey">
 
-		<div id="main" class="greyBackground">
+		<div id="main">
 			<div id="left_main">
 				<div id="suggest_stories"></div>
 				<!-- thumbmail of post-->
 
-				<!-- End of  thumbmail of post-->
+
 				{% for publication in allPublications %}
 					<div class="thumbmail mb-5">
 						<div class="top_bar_stories">
 							<div class="img_profil">
-							{% if publication.avatar == default_avatar %}
-								<img class="rounded_image" src="{{path_default_avatar}}/{{ default_avatar}} " alt="photo_de_profil">
-							{% else %}	
-								<img class="rounded_image" src="avatar/{{ publication.user_id }}/{{ publication.avatar}}" alt="photo_de_profil">
-							{% endif %}
+								{% if publication.avatar == default_avatar %}
+									<img class="rounded_image" src="{{path_default_avatar}}/{{ default_avatar}} " alt="photo_de_profil">
+								{% else %}
+									<img class="rounded_image" src="avatar/{{ publication.user_id }}/{{ publication.avatar}}" alt="photo_de_profil">
+								{% endif %}
 								<div class="name_profil">
 									{{ publication.pseudo }}
 								</div>
@@ -34,7 +31,7 @@
 							</div>
 						</div>
 						<div class="main_image_stories">
-							<img src="publication/{{ publication.user_id}}/{{ publication.id }}/{{ publication.image}}" alt="main_image">
+							<img src="{{path_publication}}/{{ publication.user_id}}/{{ publication.id }}/{{ publication.image}}" alt="main_image">
 						</div>
 						<div
 							class="bottom_stories">
@@ -46,29 +43,38 @@
 									<i class="far fa-envelope"></i>
 								</div>
 								<div class="share_fontawesome">
-									<i class="far fa-share-square"></i>
+									<i class="far fa-bookmark"></i>
 								</div>
 							</div>
 							<div class="comment_section">
 								<div class="comment">
-									{{ publication.nbr_like }} j'aime
+									{{ publication.nbr_like }}
+									j'aime
 								</div>
-								 <div> <span class="bold">{{ publication.pseudo}} </span>{{ publication.contenu}} </div>
-								<span class="fontColorGreyLight pointer" onclick="getComment({{publication.id}})"> Voir les {{ publication.NbrComment }} commentaires </span>
+								<div>
+									<span class="bold">{{ publication.pseudo}}
+									</span>
+									{{ publication.contenu}}
+								</div>
+								<span class="fontColorGreyLight pointer" onclick="getComment({{publication.id}})">
+									Voir les
+									{{ publication.NbrComment }}
+									commentaires
+								</span>
 								<div class="add_comment_stories">
-					
+
 									<form class="comment_post">
-										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." id="commentPublication"></input>
-										<span class="post_comment" onclick="postComment({{ publication.id }})">Publier</span>
-									</form>
-								</div>
+										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." id="commentPublication{{ loop.index }}"></input>
+									<span class="post_comment" onclick="postComment({{ publication.id }})">Publier</span>
+								</form>
 							</div>
 						</div>
 					</div>
-				{% endfor %}
-			</div>
+				</div>
+			{% endfor %}
+			<!-- End of  thumbmail of post-->
+		</div>
 
-		
 
 		<div
 			id="main_profil">
@@ -80,7 +86,7 @@
 						Yongo987162756
 					</div>
 					<div class="police2">
-						Yongo
+						{{ app.user.pseudo }}
 					</div>
 				</div>
 				<div id="basculer_profil_home" class="GoBlue">
@@ -115,7 +121,5 @@
 			</div>
 
 		</div>
-</div>
 	</div>
-
-</section></div></body></html>{% endblock %}
+</div></section></div></body></html>{% endblock %}

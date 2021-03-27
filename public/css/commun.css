@@ -36,25 +36,26 @@
   --facebook: #385185;
   --fontColorBlack: #262626;
   --fontColorGreyLight: #8e8e8e;
+  --MainGrey: #fafafa;
 }
 
 /*
 HEADER
 */
 @font-face {
-  font-family: "Segoe UI Regular";
+  font-family: 'Segoe UI Regular';
   font-style: normal;
   font-weight: normal;
-  src: local("Segoe UI Regular"), url("font/Segoe UI.woff") format("woff");
+  src: local('Segoe UI Regular');
 }
 @font-face {
-  font-family: "Segoe UI Italic";
+  font-family: 'Segoe UI Italic';
   font-style: normal;
   font-weight: normal;
-  src: local("Segoe UI Italic"), url("Segoe UI Italic.woff") format("woff");
+  src: local('Segoe UI Italic'), url('Segoe UI Italic.woff') format('woff');
 }
 * {
-  font-family: "Segoe UI Regular", "Segoe UI Italic";
+  font-family: 'Segoe UI Regular', 'Segoe UI Italic';
   font-weight: 300;
 }
 a {
@@ -129,7 +130,7 @@ header {
   vertical-align: middle;
 }
 #navbar_top #main_nav #right_nav {
-  cursor:pointer;
+  cursor: pointer;
 }
 /* Outils */
 .button_login {
@@ -156,6 +157,35 @@ header {
 
 .pleinePage {
   min-height: 1100px;
+}
+/*popup_profil*/
+#popup_profil {
+  width: 230px;
+  height: 194px;
+  background-color: white;
+  position: relative;
+  top: 245%;
+  right: 27%;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+#popup_profil .separateur_menu {
+  height:1px;
+  border-top : 2px rgba(var(--greyLight, 219, 219, 219), 1) solid;
+}
+#popup_profil > a {
+  color:black;
+}
+#popup_profil > a:last-child{
+  color:black;
+}
+#popup_profil > a:not(:last-child){
+  margin-bottom:10px;
+}
+#popup_profil a svg{
+  margin-right:10px;
 }
 
 /* FORMULAIRE */
@@ -242,11 +272,14 @@ Tools
 .greyBackground {
   background-color: rgba(var(--greyBackground, 255, 255, 255), 1);
 }
+.mainGrey {
+  background-color: var(--MainGrey);
+}
 .margin-auto {
   margin: 0 auto;
 }
 .bold {
-  font-weight:bold;
+  font-weight: bold;
 }
 /*
 * --------------------------------------------------------------
@@ -298,7 +331,7 @@ Upload image
   background: #ffffff;
   -webkit-box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.04);
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0);
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -357,7 +390,7 @@ Input
   width: 80%;
   border: none;
   color: rgba(var(--i1d, 38, 38, 38), 1);
-  background : none;
+  background: none;
 }
 
 /*
@@ -367,5 +400,5 @@ Cursor
 */
 
 .pointer {
-  cursor:pointer;
+  cursor: pointer;
 }

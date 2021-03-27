@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilController!
-{% endblock %}
-
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/profil.css') }}">
 
@@ -16,7 +13,7 @@
 				</div>
 				<div class="top">
 					<div class="d-flex mb-4">
-						<h2 class="size28 mr-3">yongo12340987</h2>
+						<h2 class="size28 mr-3">{{app.user.pseudo}}</h2>
 						<span class="button_modification mr-3 font-weight-bold">Modifier profil</span>
 						<span class="align-self-center">
 							<i class="far fa-circle "></i>
@@ -55,10 +52,8 @@
 
 			<!-- Publications -->
 			<div class="profil_choice">
-				<img class="mr-4" src="image/hiver.jpg">
-				<img class="mr-4" src="image/hiver.jpg">
 				{% for publication in allPublications %}
-				<img class="mr-4" src="publication/" >
+				<img class="mr-4" src="{{path_publication}}/{{ publication.user_id}}/{{ publication.id }}/{{ publication.image}}" >
 				{% endfor %}
 			</div>
 		</div>

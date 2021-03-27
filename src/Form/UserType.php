@@ -24,12 +24,19 @@ class UserType extends AbstractType
 
                 ]
             ])
-            // ->add('roles')
             ->add('pseudo', TextType::class, [
                 'label' => false,
                 'attr' => [
                     'class' => 'input_instagram mb-2 col-9',
-                    'placeholder' => 'pseudo'
+                    'placeholder' => 'nom d\'utilisateur'
+
+                ]
+            ])
+            ->add('meta_name', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'input_instagram mb-2 col-9',
+                    'placeholder' => 'nom_complet'
 
                 ]
             ])
