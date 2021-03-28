@@ -17,22 +17,16 @@
 					<div class="thumbmail mb-5">
 						<div class="top_bar_stories">
 							<div class="img_profil">
-								{% if publication.avatar == default_avatar %}
-									<img class="rounded_image" src="{{path_default_avatar}}/{{ default_avatar}} " alt="photo_de_profil">
-								{% else %}
-									<img class="rounded_image" src="avatar/{{ publication.user_id }}/{{ publication.avatar}}" alt="photo_de_profil">
-								{% endif %}
+						
 								<div class="name_profil">
-									{{ publication.pseudo }}
+						
 								</div>
 							</div>
 							<div class="open_modal">
 								<i class="fas fa-circle"></i>
 							</div>
 						</div>
-						<div class="main_image_stories">
-							<img src="{{path_publication}}/{{ publication.user_id}}/{{ publication.id }}/{{ publication.image}}" alt="main_image">
-						</div>
+					
 						<div
 							class="bottom_stories">
 							<!-- ICON STORIES-->
@@ -53,18 +47,18 @@
 
 								{% endif %} #}
 									<span onclick="addLikeToPubli({{publication.id}})">
-										{{ publication.nbr_like }}
+							
 										j'aime
 									<span>
 								</div>
 								<div>
-									<span class="bold">{{ publication.pseudo}}
+									<span class="bold">
 									</span>
 									{{ publication.contenu}}
 								</div>
 								<span class="fontColorGreyLight pointer" onclick="getComment({{publication.id}})">
 									Voir les
-									{{ publication.NbrComment }}
+								
 									commentaires
 								</span>
 								<div class="add_comment_stories">
