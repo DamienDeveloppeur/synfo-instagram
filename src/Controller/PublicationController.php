@@ -26,6 +26,7 @@ class PublicationController extends AbstractController
         $user = new User();
         $publication = new Publication();
         $allPublications = $PublicationRepo->getAllPublication();
+        
         // dump($this->getuser());
         // dump($publication->isLikedByUser($this->getuser()));
         // dump($allPublications);
