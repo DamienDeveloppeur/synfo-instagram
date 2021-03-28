@@ -7,10 +7,12 @@ use App\Entity\Photo;
 use App\Entity\Commentaire;
 use App\Entity\Publication;
 use App\Form\PublicationType;
+use App\Entity\LikePublication;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CommentaireRepository;
 use App\Repository\PublicationRepository;
+use App\Repository\LikePublicationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,11 +27,11 @@ class PublicationController extends AbstractController
 
         $user = new User();
         $publication = new Publication();
-        $allPublications = $PublicationRepo->getAllPublication();
+        $allPublications = $PublicationRepo->getAllPublication($this->getUser()->getId());
         
         // dump($this->getuser());
         // dump($publication->isLikedByUser($this->getuser()));
-        // dump($allPublications);
+        dump($allPublications);
         return $this->render('home/index.html.twig', [
             'allPublications' => $allPublications,
             'title' => "accueil",
@@ -116,16 +118,36 @@ class PublicationController extends AbstractController
     /**
      * @Route("/postLike", name="postLike")
      */
-    public function postLike(Publication $publication, Request $Request,EntityManagerInterface $manager) {
+    public function postLike(PublicationRepository $publiRepo, LikePublicationRepository $likeRepo, Request $Request,EntityManagerInterface $manager) {
 
         $user = $this->getUser();
         if (!$user) return $this->json(['code' => 403], 403);
-        $publication = new Publication();
+        dump($_POST["publication"]);
+        $publication = $publiRepo->find($_POST["publication"]);
+        $LP = new LikePublication();
+
+        if($publication->isLikedByUser($user)) {
+            $like = $likeRepo->findOneBy([
+                'publication' => $publication,
+                'user' => $user
+            ]);
+            $manager->remove($like);
+            $manager->flush();
+            $message = "delete";
+        } else {
+            $LP->setUser($user);
+            $LP->setPublication($publication);
+            $manager->persist($LP);
+            $manager->flush();
+            $message = "add";
+        }
+       
+        
 
         return $this->json(
             [
                 'code' => 200,
-                'message' => "Ok",
+                'message' => $message,
             ],
             200
         );

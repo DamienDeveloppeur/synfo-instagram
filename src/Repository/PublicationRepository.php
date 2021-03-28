@@ -85,7 +85,7 @@ class PublicationRepository extends ServiceEntityRepository
     /**
      * @return array
      */
-    public function getAllPublication(): array
+    public function getAllPublication($userId): array
     {
         $conn = $this->getEntityManager()->getConnection();
 
@@ -97,19 +97,20 @@ class PublicationRepository extends ServiceEntityRepository
                     pb.created_at,
                     u.avatar,
                     u.pseudo,
-                    COUNT(lp.id) as nbr_like,
-                    lp2.user_id as LP2ID,
+                    COUNT(DISTINCT lp.id) as nbr_like,
+                    lp2.user_id as isLikedByUser,
                     COUNT(c.contenue) as NbrComment
             FROM publication pb
             JOIN photo ph on pb.id = ph.publication_id
             JOIN user u on u.id = pb.user_id
             LEFT JOIN commentaire c on pb.id = c.publication_id
             LEFT JOIN like_publication lp on lp.publication_id = pb.id
-            LEFT OUTER JOIN like_publication lp2 ON lp2.user_id = lp.user_id
+            LEFT JOIN like_publication lp2 ON lp.user_id = :userId
             GROUP BY pb.id
             ';
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+
+        $stmt->execute(['userId' => $userId]);
 
         // returns an array of arrays (i.e. a raw data set)
         return $stmt->fetchAllAssociative();

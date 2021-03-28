@@ -38,7 +38,13 @@
 							<!-- ICON STORIES-->
 							<div class="icon_stories">
 								<div class="icon_fontawesome">
-									<i class="far fa-heart"></i>
+								<!-- fas == full--> 
+								<!-- far == empty -->
+								{% if publication.isLikedByUser is not null %}
+									<i class="fas fa-heart" onclick="addLikeToPubli({{publication.id}})" id="heart{{publication.id}}"></i>
+								{% else %}
+									<i class="far fa-heart" onclick="addLikeToPubli({{publication.id}})" id="heart{{publication.id}}"></i>
+								{% endif %}
 									<i class="far fa-comment"></i>
 									<i class="far fa-envelope"></i>
 								</div>
@@ -48,13 +54,10 @@
 							</div>
 							<div class="comment_section">
 								<div class="comment">
-	
-								{# {% if publication.isLikedByUser(app.user) %}	
-
-								{% endif %} #}
-									<span onclick="addLikeToPubli({{publication.id}})">
-										{{ publication.nbr_like }}
+									<span class="d-flex">
+										<div id="nbrLike{{publication.id}}" class="mr-2">{{ publication.nbr_like }} </div>
 										j'aime
+
 									<span>
 								</div>
 								<div>
