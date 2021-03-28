@@ -48,8 +48,14 @@
 							</div>
 							<div class="comment_section">
 								<div class="comment">
-									{{ publication.nbr_like }}
-									j'aime
+	
+								{# {% if publication.isLikedByUser(app.user) %}	
+
+								{% endif %} #}
+									<span onclick="addLikeToPubli({{publication.id}})">
+										{{ publication.nbr_like }}
+										j'aime
+									<span>
 								</div>
 								<div>
 									<span class="bold">{{ publication.pseudo}}
@@ -64,7 +70,7 @@
 								<div class="add_comment_stories">
 
 									<form class="comment_post">
-										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." id="commentPublication{{ loop.index }}"></input>
+										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." id="commentPublication{{ publication.id }}"></input>
 									<span class="post_comment" onclick="postComment({{ publication.id }})">Publier</span>
 								</form>
 							</div>

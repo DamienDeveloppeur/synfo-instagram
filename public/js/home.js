@@ -37,3 +37,18 @@ function getComment(idPubli) {
         })
 
 }
+
+function addLikeToPubli(publication){
+    $.ajax({
+        type: "POST",
+        url: '/postLike',
+        async: true,
+        data:{'publication' : publication},
+        cache: false
+        }).done(function (result) {
+            console.log(result)
+        })
+        .fail(function (result) {
+
+        })
+}

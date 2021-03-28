@@ -152,4 +152,15 @@ class Publication
 
         return $this;
     }
+    /**
+     * @return boolean
+     * @param Object $user the user currently logged
+     */
+    public function isLikedByUser(User $user) : bool {
+        foreach($this->likePublications as $like) {
+            if ($like->getUser() === $user) return true;
+        }
+        
+        return false;
+    }
 }
