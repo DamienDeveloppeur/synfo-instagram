@@ -172,15 +172,8 @@ class PublicationRepository extends ServiceEntityRepository
     public function test()
     {
         return $this->createQueryBuilder('p')
-             ->select('u.pseudo')
-            // ->from('user', 'u')
+             ->select('p', 'u.pseudo')
             ->innerJoin('p.user', 'u', 'WITH', 'u.id = p.user')
-            // ->Join('user', 'u','WITH','p.user_id = u.id')
-            // ->select('p')
-            // ->innerJoin('p.user_id', 'u', 'WITH', 'u.id = p.user_id ')
-
-            // ->leftJoin('partner_address', 'pa', 'ON', 'pa.id_partner = p.id')
-            // ->leftJoin('user', 'u')
             ->getQuery()
             ->getResult()
         ;

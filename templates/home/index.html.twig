@@ -42,31 +42,16 @@
 							</div>
 							<div class="comment_section">
 								<div class="comment">
-	
-								{# {% if publication.isLikedByUser(app.user) %}	
+				{# {{dump(publication[0])}} #}
+								{% if publication[0].isLikedByUser(app.user) %}	
+									{{dump(publication)}}
+									{% else %}
+									TOAST !
+								{% endif %} 
 
-								{% endif %} #}
-									<span onclick="addLikeToPubli({{publication.id}})">
-							
-										j'aime
-									<span>
-								</div>
-								<div>
-									<span class="bold">
-									</span>
-									{{ publication.contenu}}
-								</div>
-								<span class="fontColorGreyLight pointer" onclick="getComment({{publication.id}})">
-									Voir les
-								
-									commentaires
-								</span>
 								<div class="add_comment_stories">
 
-									<form class="comment_post">
-										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." id="commentPublication{{ publication.id }}"></input>
-									<span class="post_comment" onclick="postComment({{ publication.id }})">Publier</span>
-								</form>
+								
 							</div>
 						</div>
 					</div>

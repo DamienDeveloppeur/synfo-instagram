@@ -25,13 +25,14 @@ class PublicationController extends AbstractController
 
         $user = new User();
         $publication = new Publication();
-        // $allPublications = $PublicationRepo->getAllPublication();
-        // dump($this->getuser());
-        $allPublications = $PublicationRepo->test();
-        dump($allPublications);
+        $test = $PublicationRepo->test();
+
+        dump($test);
+        $allPublications = $PublicationRepo->getAllPublication();
+        // dump($allPublications);
         // dump($allPublications);
         return $this->render('home/index.html.twig', [
-            'allPublications' => $allPublications,
+            'allPublications' => $test,
             'title' => "accueil",
         ]);
     }
