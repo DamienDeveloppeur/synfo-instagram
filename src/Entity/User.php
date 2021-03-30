@@ -353,4 +353,8 @@ class User implements UserInterface
         return $this;
     }
 
+    public function ifAbonne() {
+        return "test";
+    }    
+    // CUSTOM METHOD FOR
 }

@@ -61,3 +61,26 @@ function addLikeToPubli(publication){
 
         })
 }
+function abonnement(idUser){
+    $.ajax({
+        type: "POST",
+        url: '/post_abonnement',
+        async: true,
+        data:{'idUser' : idUser},
+        cache: false
+        }).done(function (result) {
+            console.log(result)
+            // if(result.message === "add") {
+            //     $("#heart"+publication).addClass("fas");
+            //     $("#heart"+publication).removeClass("far");
+            //     $("#nbrLike"+publication).text(parseInt($("#nbrLike"+publication).text())+1)    
+            // } else {
+            //     $("#heart"+publication).addClass("far");
+            //     $("#heart"+publication).removeClass("fas");
+            //     $("#nbrLike"+publication).text(parseInt($("#nbrLike"+publication).text())-1)  
+            // }
+        })
+        .fail(function (result) {
+
+        })
+}

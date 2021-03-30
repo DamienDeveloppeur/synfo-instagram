@@ -9,7 +9,7 @@
 			<!-- Partie du haut -->
 			<div class="recapitulatif_profil d-flex justify-center-">
 				<div class="left div_avatar_profil">
-					<img class="avatar_profil" src="image/all/photo_profil.jpg" alt="photo_de_profil">
+					<img class="avatar_profil" src="image/all/photo_profil.jpg" alt="photo_de_profil" data-toggle="modal" data-target="#modal_update_avatar">
 				</div>
 				<div class="top">
 					<div class="d-flex mb-4">
@@ -20,7 +20,8 @@
 						</span>
 					</div>
 					<div class="middle d-flex mb-4">
-						<span class="mr-5">{{nbrPubli[0].nbrElement}} publications</span>
+						<span class="mr-5">{{nbrPubli[0].nbrElement}}
+							publications</span>
 						<span class="mr-5">30 abonnés</span>
 						<span class="mr-5">156 abonnements</span>
 					</div>
@@ -33,7 +34,6 @@
 
 			<!-- Separateur -->
 			<div class="profil_nav ">
-
 				<div class="d-flex justify-space-evenly mb-3  mt-3 size12">
 					<a>
 						<i class="fas fa-border-all mr-1"></i>PUBLICATIONS
@@ -53,7 +53,7 @@
 			<!-- Publications -->
 			<div class="profil_choice">
 				{% for publication in allPublications %}
-				<img class="mr-4" src="{{path_publication}}/{{ publication.user_id}}/{{ publication.id }}/{{ publication.image}}" >
+					<img class="mr-4" src="{{path_publication}}/{{ publication.user_id}}/{{ publication.id }}/{{ publication.image}}">
 				{% endfor %}
 			</div>
 		</div>
@@ -64,12 +64,34 @@
 		</div>
 		<div id="footer_second_line">
 			Beauté Danse et performance Fitness Nourriture et boissons Maison et
-																																																																																																																																																																																																																																										jardin Musique Arts visuels
+																																																																																																																																																																																																																																													jardin Musique Arts visuels
 		</div>
 		<div id="footer_last_line"></div>
 
-		Français © 2021 Instagram par Facebook</div>
+		Français © 2021 Instagram par Facebook
+	</div>
 
+	<!-- Modal update avatar -->
+	<div class="modal fade" id="modal_update_avatar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modifier la photo de profil</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body d-flex flex-column">
+				<a>Importer une photo</a>
+				<div class="separateur"></div>
+				<a> Suprimmer la photo actuelle</a>
+			</div>
+			<div class="modal-footer">
+				<span class="text-center m-auto" data-dismiss="modal">Annuler</span>
+			</div>
+			</div>
+		</div>
+	</div>
 
 
 {% endblock %}

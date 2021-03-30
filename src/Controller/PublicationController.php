@@ -20,23 +20,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PublicationController extends AbstractController
 {
+
+    // TO /HOME
+
     /**
      * @Route("/", name="home")
      */
-    public function home(PublicationRepository $PublicationRepo){
+    public function home(PublicationRepository $PublicationRepo, UserRepository $userRepo){
 
         $user = new User();
         $publication = new Publication();
         $allPublications = $PublicationRepo->getAllPublication($this->getUser()->getId());
-        
-        // dump($this->getuser());
-        // dump($publication->isLikedByUser($this->getuser()));
-        dump($allPublications);
+
         return $this->render('home/index.html.twig', [
             'allPublications' => $allPublications,
+            "suggestions" => $userRepo->getSuggestion($this->getUser()->getId()),
             'title' => "accueil",
         ]);
     }
+
+
 
     /**
      * @Route("/publication", name="post_publication")

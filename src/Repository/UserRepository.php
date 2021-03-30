@@ -36,8 +36,16 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    public function checkAvatar() {
-        
+    public function getSuggestion($id) {
+
+        return $this->createQueryBuilder('u')
+            ->select('u','u.pseudo', 'u.avatar', 'u.id')
+            ->setMaxResults(5)
+            ->where('u.id != '.$id.'')
+            ->getQuery()
+            ->getResult()
+        ;
+
     }
     // /**
     //  * @return User[] Returns an array of User objects

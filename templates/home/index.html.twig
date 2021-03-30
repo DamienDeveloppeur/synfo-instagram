@@ -108,19 +108,28 @@
 					<div class="suggestion_profil_home">Suggestion pour vous</div>
 					<div class="police3">Voir tout</div>
 				</div>
+
+
+				{% for suggestion in suggestions %}
 				<div class="d-flex justify-content-between mb-4 paddingProfil div321 padding16">
-					<div><img class="rounded_photo_profil" src="image/all/profil_autre.jpg" alt="profil">
+					<div>
+						{% if suggestion.avatar == default_avatar %}
+							<img class="rounded_photo_profil" src="{{path_default_avatar}}/{{ default_avatar}} " alt="photo_de_profil">
+						{% else %}
+							<img class="rounded_photo_profil" src="avatar/{{ suggestion.user_id }}/{{ suggestion.avatar}}" alt="photo_de_profil">
+						{% endif %}
 					</div>
 					<div class="pseudo_profil_home">
-						<div class="police1">
-							camille
+						<div class="police1 pointer">
+							{{suggestion.pseudo}}
 						</div>
 						<div class="police2">
 							Vous suit
 						</div>
 					</div>
-					<div class="GoBlue">S'abonner</div>
+					<div class="GoBlue" onclick="abonnement({{suggestion.id}})">S'abonner</div>
 				</div>
+				{% endfor %}
 			</div>
 			<!-- Bottom -->
 			<div id="bottom_profil_home">
