@@ -36,17 +36,54 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
-    public function getSuggestion($id) {
+    public function getSuggestion($id, $limit = 5) {
 
         return $this->createQueryBuilder('u')
-            ->select('u','u.pseudo', 'u.avatar', 'u.id')
-            ->setMaxResults(5)
+            ->select('u')
+            // ->leftJoin('u.abonnements', 'a', 'WITH', 'a.user_issuer = u.id')
+            ->setMaxResults($limit)
             ->where('u.id != '.$id.'')
+            // ->andWhere('a.user_issuer_id !='.$id.'')
             ->getQuery()
             ->getResult()
         ;
 
     }
+
+     /**
+     * @return array
+     * @param int $id utilisateur courant
+     * @param int $limit limit de la requête
+     */
+    public function getSuggestionTest(int $id, int $limit = 5): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT 
+                u.id,
+                u.avatar,
+                u.pseudo,
+                a.user_issuer_id,
+                a.user_receiver_id
+            from user u 
+            left join abonnement a on u.id = a.user_receiver_id 
+            where u.id != '.$id.'
+         and (user_issuer_id != '.$id.' OR user_issuer_id IS NULL )
+         group by u.id
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
+    }
+
+
+
+
+
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

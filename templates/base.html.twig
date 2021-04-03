@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>
 			{% block title %}
-  			{% if title is not null %} {{title}} {% else %} Instagram {% endif %}
+  				{% if title is not null %} {{title}} {% else %} Instagram {% endif %}
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
@@ -13,9 +13,9 @@
 			<link rel="stylesheet" type="text/css" href="{{ asset('font/SF-Font-Pro.dmg') }}">
 			<link rel="stylesheet" type="text/css" href="{{ asset('font/Segoe UI.woff') }}">
 			<link rel="stylesheet" type="text/css" href="{{ asset('css/uploadFiles.css')}}">
-
-		</head>
-	{% endblock %}
+		{% endblock %}
+	</head>
+	
 {% if app.user %}
 	<!-- Main navbar-->
 	<header>
@@ -58,7 +58,7 @@
 	</header>
 {% endif %}
 	<body
-		class="fontColorBlack">
+		class="fontColorBlack greyBackground">
 		<!-- Modal Bootstrap -->
 		<div class="modal fade text-center" id="createPublication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">

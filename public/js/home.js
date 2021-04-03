@@ -1,7 +1,7 @@
 function postComment(idPublication) {
     let data = {
         idPublication:idPublication,
-        contenue : $("#commentPublication").val()
+        contenue : $("#commentPublication"+idPublication).val()
     }
     $.ajax({
         type: "POST",
@@ -70,15 +70,12 @@ function abonnement(idUser){
         cache: false
         }).done(function (result) {
             console.log(result)
-            // if(result.message === "add") {
-            //     $("#heart"+publication).addClass("fas");
-            //     $("#heart"+publication).removeClass("far");
-            //     $("#nbrLike"+publication).text(parseInt($("#nbrLike"+publication).text())+1)    
-            // } else {
-            //     $("#heart"+publication).addClass("far");
-            //     $("#heart"+publication).removeClass("fas");
-            //     $("#nbrLike"+publication).text(parseInt($("#nbrLike"+publication).text())-1)  
-            // }
+            if(result.message === "ok") {
+                $("#suggestion"+idUser).text("Abonné(e)");
+                $("#suggestion"+idUser).removeClass("GoBlue");
+                $("#suggestion"+idUser).prop("onclick", null).off("click");
+
+            }
         })
         .fail(function (result) {
 

@@ -31,6 +31,7 @@ class PublicationController extends AbstractController
         $user = new User();
         $publication = new Publication();
         $allPublications = $PublicationRepo->getAllPublication($this->getUser()->getId());
+        // dump($userRepo->getSuggestion($this->getUser()->getId()));
 
         return $this->render('home/index.html.twig', [
             'allPublications' => $allPublications,
@@ -83,7 +84,7 @@ class PublicationController extends AbstractController
      * @Route("/postComment", name="postComment")
      */
     public function postComment(Request $Request,EntityManagerInterface $manager, PublicationRepository $publiRepo): Response{
-        $publication = new Publication();
+        // $publication = new Publication();
         $idPubli =  $publiRepo->find($_POST["idPublication"]);
         $comment = new Commentaire();
 

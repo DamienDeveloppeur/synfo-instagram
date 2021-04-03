@@ -10,9 +10,8 @@
 		<div id="main">
 			<div id="left_main">
 				<div id="suggest_stories"></div>
+
 				<!-- thumbmail of post-->
-
-
 				{% for publication in allPublications %}
 					<div class="thumbmail mb-5">
 						<div class="top_bar_stories">
@@ -61,8 +60,7 @@
 									<span>
 								</div>
 								<div>
-									<span class="bold">{{ publication.pseudo}}
-									</span>
+									<span class="bold">{{ publication.pseudo}}</span>
 									{{ publication.contenu}}
 								</div>
 								<span class="fontColorGreyLight pointer" onclick="getComment({{publication.id}})">
@@ -74,7 +72,7 @@
 
 									<form class="comment_post">
 										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." id="commentPublication{{ publication.id }}"></input>
-									<span class="post_comment" onclick="postComment({{ publication.id }})">Publier</span>
+									<span class="post_comment" onclick="postComment({{ publication.id }})" id="commentPublication{{publication.id}}">Publier</span>
 								</form>
 							</div>
 						</div>
@@ -106,29 +104,31 @@
 			<div id="center_profil_home" class="mt-4">
 				<div class="d-flex justify-content-between pb-1 div321 padding16">
 					<div class="suggestion_profil_home">Suggestion pour vous</div>
-					<div class="police3">Voir tout</div>
+					<div class="police3"> <a href="{{'get_all_suggestion'}}">Voir tout </a></div>
 				</div>
 
 
 				{% for suggestion in suggestions %}
-				<div class="d-flex justify-content-between mb-4 paddingProfil div321 padding16">
-					<div>
-						{% if suggestion.avatar == default_avatar %}
-							<img class="rounded_photo_profil" src="{{path_default_avatar}}/{{ default_avatar}} " alt="photo_de_profil">
-						{% else %}
-							<img class="rounded_photo_profil" src="avatar/{{ suggestion.user_id }}/{{ suggestion.avatar}}" alt="photo_de_profil">
-						{% endif %}
-					</div>
-					<div class="pseudo_profil_home">
-						<div class="police1 pointer">
-							{{suggestion.pseudo}}
+					{% if (suggestion.isAbonned(app.user) == false) %}
+						<div class="d-flex justify-content-between mb-4 paddingProfil div321 padding16">
+							<div>
+								{% if suggestion.avatar == default_avatar %}
+									<img class="rounded_photo_profil" src="{{path_default_avatar}}/{{ default_avatar}} " alt="photo_de_profil">
+								{% else %}
+									<img class="rounded_photo_profil" src="avatar/{{ suggestion.user_id }}/{{ suggestion.avatar}}" alt="photo_de_profil">
+								{% endif %}
+							</div>
+							<div class="pseudo_profil_home">
+								<div class="police1 pointer" >
+									{{suggestion.pseudo}}
+								</div>
+								<div class="police2">
+									Suggestion pour
+								</div>
+							</div>
+							<div class="GoBlue" onclick="abonnement({{suggestion.id}})" id="suggestion{{suggestion.id}}">S'abonner</div>
 						</div>
-						<div class="police2">
-							Vous suit
-						</div>
-					</div>
-					<div class="GoBlue" onclick="abonnement({{suggestion.id}})">S'abonner</div>
-				</div>
+					{% endif %}
 				{% endfor %}
 			</div>
 			<!-- Bottom -->
@@ -140,4 +140,10 @@
 
 		</div>
 	</div>
-</div></section></div></body></html>{% endblock %}
+</div>
+
+
+
+</section></div>
+
+{% endblock %}

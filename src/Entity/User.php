@@ -352,9 +352,14 @@ class User implements UserInterface
 
         return $this;
     }
-
-    public function ifAbonne() {
-        return "test";
-    }    
+   
     // CUSTOM METHOD FOR
+
+    public function isAbonned(User $user): bool
+    {
+        foreach ($this->abonnements as $abo) {
+            if ($abo->getUserIssuer() === $user) return true ;
+        }
+        return false;
+    }
 }
