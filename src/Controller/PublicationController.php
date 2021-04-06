@@ -32,7 +32,7 @@ class PublicationController extends AbstractController
         $publication = new Publication();
         $allPublications = $PublicationRepo->getAllPublication($this->getUser()->getId());
         // dump($userRepo->getSuggestion($this->getUser()->getId()));
-
+        dump( $userRepo->getSuggestion($this->getUser()->getId()));
         return $this->render('home/index.html.twig', [
             'allPublications' => $allPublications,
             "suggestions" => $userRepo->getSuggestion($this->getUser()->getId()),
@@ -106,15 +106,17 @@ class PublicationController extends AbstractController
     /**
      * @Route("/getComment", name="getComment")
      */
-    public function getComment(Request $Request,EntityManagerInterface $manager, CommentaireRepository $commentRepo) {
-        dump($_POST["idPubli"]);
+    public function getComment(Request $Request,EntityManagerInterface $manager, CommentaireRepository $commentRepo, PublicationRepository $publiRepo): Response{
         $comment =  $commentRepo->getCommentByPublication($_POST["idPubli"]);
-        dump($comment);
+        $onePublication = $publiRepo->getPublicationByKey("pb.id",$_POST["idPubli"]);
+
         return $this->json(
             [
                 'code' => 200,
                 'message' => "Ok",
-                "comment" => $comment
+                "comment" => $comment,
+                "onePublication" => $onePublication,
+                "pathFiles" => $this->getParameter('app.path_publication')
             ],
             200
         );

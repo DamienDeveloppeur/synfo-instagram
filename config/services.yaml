@@ -4,10 +4,10 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-        app.path_image : "image/test"
+        app.path_image : "/image/test"
         app.default_avatar : "photo_profil.jpg"
-        app.path_default_avatar : "image/all"
-        app.path_publication : "publication"
+        app.path_default_avatar : "/image/all"
+        app.path_publication : "/publication"
 services:
     # default configuration for services in *this* file
     _defaults:

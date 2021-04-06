@@ -87,12 +87,18 @@ class User implements UserInterface
      */
     private $meta_name;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MessagePrive::class, mappedBy="user_receiver")
+     */
+    private $messagePrives;
+
     public function __construct()
     {
         $this->publications = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
         $this->likePublications = new ArrayCollection();
         $this->abonnements = new ArrayCollection();
+        $this->messagePrives = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -361,5 +367,35 @@ class User implements UserInterface
             if ($abo->getUserIssuer() === $user) return true ;
         }
         return false;
+    }
+
+    /**
+     * @return Collection|MessagePrive[]
+     */
+    public function getMessagePrives(): Collection
+    {
+        return $this->messagePrives;
+    }
+
+    public function addMessagePrife(MessagePrive $messagePrife): self
+    {
+        if (!$this->messagePrives->contains($messagePrife)) {
+            $this->messagePrives[] = $messagePrife;
+            $messagePrife->setUserReceiver($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagePrife(MessagePrive $messagePrife): self
+    {
+        if ($this->messagePrives->removeElement($messagePrife)) {
+            // set the owning side to null (unless already changed)
+            if ($messagePrife->getUserReceiver() === $this) {
+                $messagePrife->setUserReceiver(null);
+            }
+        }
+
+        return $this;
     }
 }

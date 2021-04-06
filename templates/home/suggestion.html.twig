@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<link rel="stylesheet" href="{{asset('css/suggestion.css')}}">
+
+<h1>Suggestions</h1>
+
+<div class="all_suggestions"> 
+	{% for suggestion in allSuggestion %}
+		{% if (suggestion.isAbonned(app.user) == false) %}
+			<div class="d-flex justify-content-between mb-4 paddingProfil div321 padding16">
+				<div>
+					{% if suggestion.avatar == default_avatar %}
+						<img class="rounded_photo_profil" src="{{path_default_avatar}}/{{ default_avatar}} " alt="photo_de_profil">
+					{% else %}
+						<img class="rounded_photo_profil" src="avatar/{{ suggestion.user_id }}/{{ suggestion.avatar}}" alt="photo_de_profil">
+					{% endif %}
+				</div>
+				<div class="pseudo_profil_home">
+					<div class="police1 pointer">
+						{{suggestion.pseudo}}
+					</div>
+					<div class="police2">
+						Suggestion pour
+					</div>
+				</div>
+				<div class="GoBlue" onclick="abonnement({{suggestion.id}})" id="suggestion{{suggestion.id}}">S'abonner</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>
+
+{% endblock %}

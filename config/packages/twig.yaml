@@ -4,7 +4,7 @@ twig:
     strict_variables: '%kernel.debug%'
     exception_controller: null
     globals:
-        path_image : "image/test"
+        path_image : "/image/test"
         default_avatar : "photo_profil.jpg"
-        path_default_avatar : "image/all"
-        path_publication : "publication"
+        path_default_avatar : "/image/all"
+        path_publication : "/publication"

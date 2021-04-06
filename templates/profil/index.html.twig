@@ -9,17 +9,23 @@
 			<!-- Partie du haut -->
 			<div class="recapitulatif_profil d-flex justify-center-">
 				<div class="left div_avatar_profil">
-					<img class="avatar_profil" src="image/all/photo_profil.jpg" alt="photo_de_profil" data-toggle="modal" data-target="#modal_update_avatar">
+					<img class="avatar_profil" src="/image/all/photo_profil.jpg" alt="photo_de_profil" data-toggle="modal" data-target="#modal_update_avatar">
 				</div>
 				<div class="top">
 					<div class="d-flex mb-4">
-						<h2 class="size28 mr-3">{{app.user.pseudo}}</h2>
-						<span class="button_modification mr-3 font-weight-bold">Modifier profil</span>
+						<h2 class="size28 mr-3">{{dataUser.pseudo}}</h2>
+						{% if app.user.id == dataUser.id %}
+							<span class="button_modification mr-3 font-weight-bold">Modifier profil</span>
+						{% else %}
+							<span class="btn btn-primary mr-3" onclick="abonnement({{dataUser.id}})">S'abonner</span>
+							<a href="{{path('openConversation')}}"><span class="btn btn-primary">Envoyer un message prive</span></a>
+
+						{% endif %}
 						<span class="align-self-center">
 							<i class="far fa-circle "></i>
 						</span>
 					</div>
-					<div class="middle d-flex mb-4">
+					<div class="middle d-flex mb-4">ç
 						<span class="mr-5">{{nbrPubli[0].nbrElement}}
 							publications</span>
 						<span class="mr-5">30 abonnés</span>

@@ -23,7 +23,7 @@
 			<div id="main_nav" class="">
 				<div id="left_nav">
 					<a href="{{path('home')}}">
-						<img src="image/header/instagram.png">
+						<img src="/image/header/instagram.png">
 					</a>
 				</div>
 				<div id="search_bar">
@@ -38,11 +38,11 @@
 					<i class="far fa-envelope"></i>
 					<i class="far fa-compass"></i>
 					<i class="far fa-heart"></i>
-					<img class="rounded_photo_profil" onclick="openMenu('popup_profil')" src="image/all/photo_profil.jpg" alt="photo_de_profil">
+					<img class="rounded_photo_profil" onclick="openMenu('popup_profil')" src="/image/all/photo_profil.jpg" alt="photo_de_profil">
 				</div>
 				<!-- Menu barre header -->
 				<div id="popup_profil" class="d-none">
-					<a href="{{path('profil')}}">
+					<a href="{{path('profil', {'id': app.user.id})}}">
 						<i class="far fa-user-circle"></i>Profil</a>
 					<a href="">
 						<i class="far fa-bookmark"></i>Enregistré</a>

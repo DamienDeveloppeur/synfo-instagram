@@ -75,11 +75,12 @@ Main section
 /*
 Bottom stories
 */
-#bottom_stories {
+.bottom_stories {
   width: 614px;
   padding: 10px 15px 0px 15px;
   background-color: rgba(var(--d87, 255, 255, 255), 1);
   border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  padding: 0px 15px;
 }
 #main .thumbmail .bottom_stories .icon_stories {
   height: 40px;
@@ -162,4 +163,26 @@ Main profil
 #main_profil #bottom_profil_home {
   font-size: 10px;
   color: grey;
+}
+
+/*
+* --------------------------------------------------------------
+Modal resize
+* --------------------------------------------------------------
+*/
+
+#getComment .modal-dialog {
+  min-width:1200px;
+}
+#getComment .modal-dialog .modal-body .right_openComment{
+  width:40%;
+}
+#getComment .modal-dialog .modal-body .right_openComment #top_modal {
+  height:72px;
+}
+
+#getComment .modal-dialog .modal-body .right_openComment #bottom_modal {
+  position: absolute;
+  bottom: 0;
+  height:100px;
 }

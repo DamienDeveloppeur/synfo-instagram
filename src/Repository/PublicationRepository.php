@@ -99,7 +99,7 @@ class PublicationRepository extends ServiceEntityRepository
                     u.pseudo,
                     COUNT(DISTINCT lp.id) as nbr_like,
                     lp2.user_id as isLikedByUser,
-                    COUNT(c.contenue) as NbrComment
+                    COUNT(DISTINCT c.contenue) as NbrComment
             FROM publication pb
             JOIN photo ph on pb.id = ph.publication_id
             JOIN user u on u.id = pb.user_id
@@ -118,7 +118,7 @@ class PublicationRepository extends ServiceEntityRepository
     /**
      * @return array
      */
-    public function getAllPublicationByKey($key, $value): array
+    public function getPublicationByKey(String $key, Mixed $value): array
     {
         $conn = $this->getEntityManager()->getConnection();
 

@@ -13,21 +13,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProfilController extends AbstractController
 {
     /**
-     * @Route("/profil", name="profil")
+     * @Route("/profil/{id}", name="profil")
      */
-    public function index(PublicationRepository $repo, UserInterface  $user ): Response
-    {
-        $allPublications = $repo->getAllPublicationByKey("pb.user_id",$this->getUser()->getId());
+    public function index($id, PublicationRepository $repoPubli, UserRepository $repoUser): Response {
+        dump($id);
+        // $user = $repoUser->find($id);
+        $allPublications = $repoPubli->getPublicationByKey(
+            'pb.user_id',
+            $id
+        );
+        $dataUser = $repoUser->getDataUser($id);
         // équivalent de $_SESSION["utilisateur_id"]
-        $userId = $user->getId();
+        // $userId = $user->getId();
 
-        $nbrPubli =  $repo->getNbrEntity("publication", "user_id",$this->getUser()->getId() );
+        $nbrPubli = $repoPubli->getNbrEntity(
+            'publication',
+            'user_id',
+            $id
+        );
         dump($nbrPubli);
         return $this->render('profil/index.html.twig', [
             'allPublications' => $allPublications,
-            "userId"          => $userId,
-            'nbrPubli'        => $nbrPubli,
-            'title'           => "Mon profil",
+            'userId' => $id,
+            'nbrPubli' => $nbrPubli,
+            'dataUser' => $dataUser,
+            'title' => 'Mon profil',
         ]);
     }
+
+
 }

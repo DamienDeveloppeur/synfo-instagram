@@ -78,6 +78,28 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         // returns an array of arrays (i.e. a raw data set)
         return $stmt->fetchAll();
     }
+     /**
+     * @return array
+     * @param int $id Identifiant de l'utilisateur 
+     */
+    public function getDataUser(int $id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT 
+                u.id,
+                u.avatar,
+                u.pseudo
+            from user u 
+            where u.id = '.$id.'
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetch();
+    }
 
 
 

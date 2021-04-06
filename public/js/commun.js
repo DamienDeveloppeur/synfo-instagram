@@ -48,3 +48,24 @@ function openMenu(idDiv) {
         $("#"+idDiv+"").addClass("d-none")
     }
 }
+
+function abonnement(idUser){
+    $.ajax({
+        type: "POST",
+        url: '/post_abonnement',
+        async: true,
+        data:{'idUser' : idUser},
+        cache: false
+        }).done(function (result) {
+            console.log(result)
+            if(result.message === "ok") {
+                $("#suggestion"+idUser).text("Abonné(e)");
+                $("#suggestion"+idUser).removeClass("GoBlue");
+                $("#suggestion"+idUser).prop("onclick", null).off("click");
+
+            }
+        })
+        .fail(function (result) {
+
+        })
+}

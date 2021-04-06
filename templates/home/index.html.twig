@@ -32,8 +32,7 @@
 						<div class="main_image_stories">
 							<img src="{{path_publication}}/{{ publication.user_id}}/{{ publication.id }}/{{ publication.image}}" alt="main_image">
 						</div>
-						<div
-							class="bottom_stories">
+						<div class="bottom_stories">
 							<!-- ICON STORIES-->
 							<div class="icon_stories">
 								<div class="icon_fontawesome">
@@ -63,7 +62,7 @@
 									<span class="bold">{{ publication.pseudo}}</span>
 									{{ publication.contenu}}
 								</div>
-								<span class="fontColorGreyLight pointer" onclick="getComment({{publication.id}})">
+								<span class="fontColorGreyLight pointer" data-toggle="modal" data-target="#getComment" onclick="getComment({{publication.id}})">
 									Voir les
 									{{ publication.NbrComment }}
 									commentaires
@@ -107,23 +106,25 @@
 					<div class="police3"> <a href="{{'get_all_suggestion'}}">Voir tout </a></div>
 				</div>
 
-
+			<!-- Suggestion -->
 				{% for suggestion in suggestions %}
 					{% if (suggestion.isAbonned(app.user) == false) %}
 						<div class="d-flex justify-content-between mb-4 paddingProfil div321 padding16">
 							<div>
+									<a href="{{path('profil', {'id':suggestion.id})}}">
 								{% if suggestion.avatar == default_avatar %}
 									<img class="rounded_photo_profil" src="{{path_default_avatar}}/{{ default_avatar}} " alt="photo_de_profil">
 								{% else %}
 									<img class="rounded_photo_profil" src="avatar/{{ suggestion.user_id }}/{{ suggestion.avatar}}" alt="photo_de_profil">
 								{% endif %}
+									</a>
 							</div>
 							<div class="pseudo_profil_home">
 								<div class="police1 pointer" >
 									{{suggestion.pseudo}}
 								</div>
 								<div class="police2">
-									Suggestion pour
+									Suggestion pour vous 
 								</div>
 							</div>
 							<div class="GoBlue" onclick="abonnement({{suggestion.id}})" id="suggestion{{suggestion.id}}">S'abonner</div>
@@ -144,6 +145,57 @@
 
 
 
-</section></div>
+
+</section>
+
+<!-- The Modal -->
+<div id="myModal" class="modal_artisanat">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+
+
+</div>
+	<!-- Modal voir les commentaires -->
+	<div class="modal fade" id="getComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body d-flex">
+					<div class="container">
+						<div class="row">
+							<div class="left_openComment">
+								<div class="main_image_stories">
+									<img id="image_publication_modal" src="" alt="main_image">
+								</div>
+							</div>
+							<div class="right_openComment">
+								<div class="top d-flex justify-content-around" id="top_modal">
+									<img class="rounded_image" id="modal_avatar" alt="">
+									<span id="modal_pseudo"></span>
+									<i class="fas fa-circle"></i>
+									<span id="if_subsrib">Abonné(e)</span>
+								
+								</div>
+								<hr>
+								<div class="middle" id="modal_middle">
+				
+								</div>
+								<div class="bottom" id="bottom_modal">
+									<form class="comment_post">
+										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." ></input>
+										<span class="post_comment" >Publier</span>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}
