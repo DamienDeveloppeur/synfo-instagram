@@ -172,17 +172,17 @@ Modal resize
 */
 
 #getComment .modal-dialog {
-  min-width:1200px;
+  min-width: 1200px;
 }
-#getComment .modal-dialog .modal-body .right_openComment{
-  width:40%;
+#getComment .modal-dialog .modal-body .right_openComment {
+  width: 40%;
 }
 #getComment .modal-dialog .modal-body .right_openComment #top_modal {
-  height:72px;
+  height: 72px;
 }
 
 #getComment .modal-dialog .modal-body .right_openComment #bottom_modal {
   position: absolute;
   bottom: 0;
-  height:100px;
+  height: 100px;
 }

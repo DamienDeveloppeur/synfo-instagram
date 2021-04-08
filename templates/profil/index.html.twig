@@ -18,14 +18,14 @@
 							<span class="button_modification mr-3 font-weight-bold">Modifier profil</span>
 						{% else %}
 							<span class="btn btn-primary mr-3" onclick="abonnement({{dataUser.id}})">S'abonner</span>
-							<a href="{{path('openConversation')}}"><span class="btn btn-primary">Envoyer un message prive</span></a>
+							<a href="{{path('setConversation', {'id' : dataUser.id } )}}"><span class="btn btn-primary">Envoyer un message prive</span></a>
 
 						{% endif %}
 						<span class="align-self-center">
 							<i class="far fa-circle "></i>
 						</span>
 					</div>
-					<div class="middle d-flex mb-4">ç
+					<div class="middle d-flex mb-4">
 						<span class="mr-5">{{nbrPubli[0].nbrElement}}
 							publications</span>
 						<span class="mr-5">30 abonnés</span>

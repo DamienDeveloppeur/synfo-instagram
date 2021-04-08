@@ -281,6 +281,9 @@ Tools
 .bold {
   font-weight: bold;
 }
+.width_chat{
+  width:83% !important;
+}
 /*
 * --------------------------------------------------------------
 Size

@@ -92,13 +92,45 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 u.avatar,
                 u.pseudo
             from user u 
-            where u.id = '.$id.'
+            where u.id = :id
             ';
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute(['id' => $id]);
 
         // returns an array of arrays (i.e. a raw data set)
         return $stmt->fetch();
+    }
+
+     /**
+     * @return array
+     * @param int $id Identifiant de l'utilisateur 
+     */
+    public function getConversationByUser(int $id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+            SELECT 
+                    u.id as id_user_issuer,
+                    u.pseudo as pseudo_user_issuer,
+                    u.avatar as avatar_user_issuer,
+                    u2.id as id_user_receiver,
+                    u2.pseudo as pseudo_user_receiver,
+                    u2.avatar as avatar_user_receiver,
+                    mp.contenue,
+                    mp.created_at,
+                    mp.conversation_id
+            FROM message_prive mp
+            INNER JOIN user u on (u.id = mp.user_issuer_id)
+            INNER JOIN user as u2 on (u2.id = mp.user_receiver_id)
+            WHERE user_issuer_id = :id OR user_receiver_id = :id
+            group by conversation_id
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        return $stmt->fetchAll();
     }
 
 
