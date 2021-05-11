@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ConversationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ConversationRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ConversationRepository::class)
@@ -16,21 +17,25 @@ class Conversation
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("Conversation:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("Conversation:read")
      */
     private $type;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("Conversation:read")
      */
     private $createdAt;
 
     /**
      * @ORM\OneToMany(targetEntity=MessagePrive::class, mappedBy="conversation")
+     * @Groups("Conversation:read")
      */
     private $messagePrives;
 

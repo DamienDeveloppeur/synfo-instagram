@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\MessagePriveRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MessagePriveRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MessagePriveRepository::class)
@@ -14,31 +15,37 @@ class MessagePrive
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("messagePrive:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("messagePrive:read")
      */
     private $contenue;
 
     /**
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="messagePrives")
+     * @Groups("messagePrive:read")
      */
     private $user_receiver;
 
     /**
      * @ORM\ManyToOne(targetEntity=user::class, inversedBy="messagePrives")
+     * @Groups("messagePrive:read")
      */
     private $user_issuer;
 
     /**
      * @ORM\ManyToOne(targetEntity=Conversation::class, inversedBy="messagePrives")
+     * 
      */
     private $conversation;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("messagePrive:read")
      */
     private $createdAt;
 
