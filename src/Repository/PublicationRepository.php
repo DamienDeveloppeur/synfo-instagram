@@ -107,6 +107,7 @@ class PublicationRepository extends ServiceEntityRepository
             LEFT JOIN like_publication lp on lp.publication_id = pb.id
             LEFT JOIN like_publication lp2 ON lp.user_id = :userId
             GROUP BY pb.id
+            ORDER BY pb.created_at DESC
             ';
         $stmt = $conn->prepare($sql);
 

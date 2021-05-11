@@ -14,9 +14,7 @@ function postComment(idPublication) {
             getComment(idPublication);
         })
         .fail(function (result) {
-
         })
-
 }
 // récupére les commentaires d'une publication
 function getComment(idPubli) {
@@ -32,30 +30,30 @@ function getComment(idPubli) {
         }).done(function (r) {
             console.log(r)
             console.log(r.onePublication)
-            $("#image_publication_modal").attr("src", r.pathFiles+"/"+r.onePublication[0].user_id+"/"+r.onePublication[0].id+"/"+r.onePublication[0].image+"")
-
             // inject top of the div
             $("#modal_pseudo").html(r.onePublication[0].pseudo)
+            $("#modal_message_pseudo").html(r.onePublication[0].contenu)
             if(r.onePublication[0].avatar == "photo_profil.jpg") {
-                let avatarPath = "avatar/defaut/photo_profil.jpg";
+                var avatarPath = "avatar/defaut/photo_profil.jpg";
             } else {
-                let avatarPath = "";
+                var avatarPath = "avatar/"+r.onePublication[0].id+"/"+r.onePublication[i].avatar+"";
             }
-            $("#modal_avatar").attr("src", "avatar/defaut/photo_profil.jpg")
+            $("#modal_avatar").attr("src", avatarPath)
 
             // inject conversation with
             let conversation ="";
-
             for (let i in r.comment) {
-                console.log();
-                conversation += r.comment[i].pseudo + " : " + r.comment[i].contenue
+                if(r.comment[i].avatar == "photo_profil.jpg") {
+                    var avatarPath = "avatar/defaut/photo_profil.jpg";
+                } else {
+                    var avatarPath = "avatar/"+r.comment[i].id+"/"+r.comment[i].avatar+"";
+                }
+                conversation += '<img src="'+avatarPath+'" class="rounded_photo_profil mr-2" id="modal_avatar" alt="photo_profil">'+ r.comment[i].pseudo + " " + r.comment[i].contenue
             }
             $("#modal_middle").html(conversation)
         })
         .fail(function (r) {
-
         })
-
 }
 
 function addLikeToPubli(publication){
@@ -81,3 +79,10 @@ function addLikeToPubli(publication){
 
         })
 }
+
+// menu déroulant
+$('li.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+  }, function() {
+    $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+  });

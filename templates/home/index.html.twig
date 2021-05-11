@@ -53,9 +53,8 @@
 							<div class="comment_section">
 								<div class="comment">
 									<span class="d-flex">
-										<div id="nbrLike{{publication.id}}" class="mr-2">{{ publication.nbr_like }} </div>
+										<div id="nbrLike{{publication.id}}" class="mr-2">{{ publication.nbr_like }}</div>
 										j'aime
-
 									<span>
 								</div>
 								<div>
@@ -68,10 +67,9 @@
 									commentaires
 								</span>
 								<div class="add_comment_stories">
-
 									<form class="comment_post">
 										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." id="commentPublication{{ publication.id }}"></input>
-									<span class="post_comment" onclick="postComment({{ publication.id }})" id="commentPublication{{publication.id}}">Publier</span>
+									<span class="post_comment pointer" onclick="postComment({{ publication.id }})" id="commentPublication{{publication.id}}">Publier</span>
 								</form>
 							</div>
 						</div>
@@ -80,16 +78,13 @@
 			{% endfor %}
 			<!-- End of  thumbmail of post-->
 		</div>
-
-
-		<div
-			id="main_profil">
+		<div id="main_profil">
 			<!-- TOP -->
 			<div id="top_profil_home" class="d-flex justify-content-between">
 				<img class="rounded-circle" src="image/all/photo_profil.jpg" alt="photo_de_profil">
 				<div id="name_profil_home">
 					<div class="police1">
-						Yongo987162756
+						{{ app.user.metaname }}
 					</div>
 					<div class="police2">
 						{{ app.user.pseudo }}
@@ -105,8 +100,7 @@
 					<div class="suggestion_profil_home">Suggestion pour vous</div>
 					<div class="police3"> <a href="{{'get_all_suggestion'}}">Voir tout </a></div>
 				</div>
-
-			<!-- Suggestion -->
+				<!-- Suggestion -->
 				{% for suggestion in suggestions %}
 					{% if (suggestion.isAbonned(app.user) == false) %}
 						<div class="d-flex justify-content-between mb-4 paddingProfil div321 padding16">
@@ -142,54 +136,32 @@
 		</div>
 	</div>
 </div>
-
-
-
-
 </section>
-
-<!-- The Modal -->
-<div id="myModal" class="modal_artisanat">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
-
-
-</div>
 	<!-- Modal voir les commentaires -->
 	<div class="modal fade" id="getComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Commentaires</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
 				<div class="modal-body d-flex">
 					<div class="container">
-						<div class="row">
-							<div class="left_openComment">
-								<div class="main_image_stories">
-									<img id="image_publication_modal" src="" alt="main_image">
-								</div>
+						<div class="row flex-column align-items-start">
+							<div class="top d-flex border_bottom width100 mb-4 pb-4" id="top_modal">
+								<img class="rounded_photo_profil mr-2" id="modal_avatar" alt="photo_profil">
+								<span id="modal_pseudo" class="font-weight-bold mr-2"></span><span class="mr-2" id="modal_message_pseudo"></span>
 							</div>
-							<div class="right_openComment">
-								<div class="top d-flex justify-content-around" id="top_modal">
-									<img class="rounded_image" id="modal_avatar" alt="">
-									<span id="modal_pseudo"></span>
-									<i class="fas fa-circle"></i>
-									<span id="if_subsrib">Abonné(e)</span>
-								
-								</div>
-								<hr>
-								<div class="middle" id="modal_middle">
-				
-								</div>
-								<div class="bottom" id="bottom_modal">
-									<form class="comment_post">
-										<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." ></input>
-										<span class="post_comment" >Publier</span>
-									</form>
-								</div>
+							<div class="middle" id="modal_middle">
+							</div>
+							<hr>
+							<div class="bottom mt-5 border_top" id="bottom_modal">
+								<form class="comment_post">
+									<input type="text" class="texareaInsta" placeholder="Ajouter un commentaire ..." ></input>
+									<span class="post_comment pointer">Publier</span>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -197,5 +169,4 @@
 			</div>
 		</div>
 	</div>
-
 {% endblock %}

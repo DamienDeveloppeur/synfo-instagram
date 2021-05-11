@@ -57,7 +57,9 @@ class CommentaireRepository extends ServiceEntityRepository
         $sql = '
         SELECT c.contenue,
                u.pseudo,
-               c.created_at
+               c.created_at,
+               u.avatar,
+               u.id
         FROM commentaire c
         JOIN user u on u.id = c.user_id
         WHERE publication_id = :idPubli

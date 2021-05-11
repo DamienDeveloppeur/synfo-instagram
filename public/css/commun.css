@@ -163,9 +163,9 @@ header {
   width: 230px;
   height: 194px;
   background-color: white;
-  position: relative;
+  /*position: relative;
   top: 245%;
-  right: 27%;
+  right: 27%;*/
   border-radius: 5%;
   display: flex;
   flex-direction: column;
@@ -284,6 +284,16 @@ Tools
 .width_chat{
   width:83% !important;
 }
+.border_top{
+  border-top: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+.border_bottom{
+  border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+}
+.width100{
+  width:100%;
+}
+
 /*
 * --------------------------------------------------------------
 Size
@@ -388,7 +398,6 @@ Input
 * --------------------------------------------------------------
 */
 .texareaInsta {
-  padding-left: 15px;
   height: 18px;
   width: 80%;
   border: none;

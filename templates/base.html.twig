@@ -30,7 +30,7 @@
 					<i class="fas fa-search"></i>
 					<span id="main_search">Rechercher</span>
 				</div>
-				<div id="right_nav">
+				<ul id="right_nav">
 					<i class="far fa-plus-square" data-toggle="modal" data-target="#createPublication"></i>
 					<a href="{{path('home')}}">
 						<i class="fa fa-home"></i>
@@ -38,21 +38,23 @@
 					<a href="{{path('Conversation')}}"> <i class="far fa-envelope"></i> </a>
 					<i class="far fa-compass"></i>
 					<i class="far fa-heart"></i>
-					<img class="rounded_photo_profil" onclick="openMenu('popup_profil')" src="/image/all/photo_profil.jpg" alt="photo_de_profil">
-				</div>
+					<li class="dropdown">
+						<img class="rounded_photo_profil dropdown-toggle" data-toggle="dropdown" onclick="openMenu('popup_profil')" src="/image/all/photo_profil.jpg" alt="photo_de_profil">
+						<ul class="dropdown-menu" id="popup_profil">
+							<a href="{{path('profil', {'id': app.user.id})}}">
+								<i class="far fa-user-circle"></i>Profil</a>
+							<a href="">
+								<i class="far fa-bookmark"></i>Enregistré</a>
+							<a href="">
+								<i class="fas fa-circle-notch"></i>Paramètres</a>
+							<a href="">
+								<i class="fas fa-sync-alt"></i>Changer de compte</a>
+							<div class="separateur_menu"></div>
+							<a href="{{path('app_logout')}}">Déconnexion</a>
+						</ul>
+					</li>
+				</ul>
 				<!-- Menu barre header -->
-				<div id="popup_profil" class="d-none">
-					<a href="{{path('profil', {'id': app.user.id})}}">
-						<i class="far fa-user-circle"></i>Profil</a>
-					<a href="">
-						<i class="far fa-bookmark"></i>Enregistré</a>
-					<a href="">
-						<i class="fas fa-circle-notch"></i>Paramètres</a>
-					<a href="">
-						<i class="fas fa-sync-alt"></i>Changer de compte</a>
-					<div class="separateur_menu"></div>
-					<a href="{{path('app_logout')}}">Déconnexion</a>
-				</div>
 			</div>
 		</div>
 	</header>
@@ -72,7 +74,6 @@
 					<div
 						class="modal-body">
 						<!-- enctype="multipart/form-data" action="{{ path('post_publication') }}" -->
-
 						<div id="upload_photo">
 							<label style="">Ajoutez des photos</label>
 							<div style="display:flex; flex-wrap: wrap; justify-content: space-evenly;">

@@ -20,9 +20,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PublicationController extends AbstractController
 {
-
-    // TO /HOME
-
     /**
      * @Route("/", name="home")
      */
@@ -40,8 +37,6 @@ class PublicationController extends AbstractController
         ]);
     }
 
-
-
     /**
      * @Route("/publication", name="post_publication")
      */
@@ -49,9 +44,10 @@ class PublicationController extends AbstractController
         $publication = new Publication();
         $publication->setUser($this->getuser())
                     ->setCreatedAt(new \DateTime())
-                    ->setContenu($_POST["contenue"])
-                    ->persist($publication)
-                    ->flush();
+                    ->setContenu($_POST["contenue"]);
+        $manager->persist($publication);
+        $manager->flush();
+
         $publicationID = $publication->getId();
         foreach($_FILES as $i => $file) {
             $ifOk = $repoPubli->uploadImagePublication($this->getUser()->getId(), $file, $i, $publicationID);
